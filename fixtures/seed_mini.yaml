@@ -1,0 +1,130 @@
+# テスト用の極小 seed（S1-test-fixtures）。ネットワーク不要・ベンチには含めない。
+# 構造は data/seed/specbench_v0.yaml と同じ。GTIN は GS1 店内用プレフィックス 29 で架空。
+seed_id: fixture-mini
+source_id: S1-test-fixtures
+source_url_base: synthetic://specsure/fixtures
+
+families:
+  - family_id: fx-charger-45
+    line_id: fx-charger
+    generation: 1
+    brand: Kestrelon
+    category: electronics.charger
+    name: {en: Fixture 45W Charger, ja: フィクスチャ 45W 充電器}
+    attributes:
+      output_power: {value: 45, unit: W}
+      width: {value: 40, unit: mm}
+    compatibility: {compatible: [USB PD 3.0], incompatible: [Corvel TurboCharge], exhaustive: false}
+    bundle: {items: [本体, 取扱説明書], exhaustive: true}
+    region_spec: {voltage: {min: 100, max: 240, unit: V}, market: {value: JP}}
+    products:
+      - {product_id: fx-c45-wh, model_number: KC-PD45-WH, gtin: "2900101000009", region: JP,
+         retailer: retailer_a, captured_at: "2026-07-01T10:00:00+09:00", variant: {color: white}}
+
+  - family_id: fx-charger-65
+    line_id: fx-charger
+    generation: 2
+    brand: Kestrelon
+    category: electronics.charger
+    name: {en: Fixture 65W Charger, ja: フィクスチャ 65W 充電器}
+    attributes:
+      output_power: {value: 65, unit: W}
+      width: {value: 45, unit: mm}
+    compatibility: {compatible: [USB PD 3.0, PPS, Corvel Nova 5], incompatible: [Corvel TurboCharge], exhaustive: false}
+    bundle: {items: [本体, 取扱説明書], exhaustive: true}
+    region_spec: {voltage: {min: 100, max: 240, unit: V}, market: {value: JP}}
+    products:
+      - {product_id: fx-c65-bk, model_number: KC-PD65-BK, gtin: "2900201000008", region: JP,
+         retailer: retailer_a, captured_at: "2026-08-01T10:00:00+09:00", variant: {color: black}}
+      - {product_id: fx-c65-wh, model_number: KC-PD65-WH, gtin: "2900202000007", region: JP,
+         retailer: retailer_b, captured_at: "2026-10-01T10:00:00+09:00", variant: {color: white}}
+
+  - family_id: fx-ink
+    line_id: fx-ink
+    generation: 1
+    brand: Mizunagi
+    category: electronics.ink_cartridge
+    name: {en: Fixture Ink, ja: フィクスチャ インク}
+    attributes:
+      page_yield: {value: 400, unit: pages}
+    compatibility: {compatible: [Mizunagi PX-810, Mizunagi PX-820], incompatible: [Mizunagi PX-710], exhaustive: true}
+    region_spec: {market: {value: JP}}
+    products:
+      - {product_id: fx-ink-bk, model_number: MZ-IC80-BK, gtin: "2900301000007", region: JP,
+         retailer: retailer_b, captured_at: "2026-09-20T10:00:00+09:00", variant: {color: black}}
+
+  - family_id: fx-dryer
+    line_id: fx-dryer
+    generation: 1
+    brand: Yukibana
+    category: appliance.hair_dryer
+    name: {en: Fixture Dryer, ja: フィクスチャ ドライヤー}
+    attributes:
+      power_consumption: {value: 1200, unit: W}
+    region_spec: {voltage: {value: 100, unit: V}, market: {value: JP}}
+    products:
+      - {product_id: fx-dryer-jp, model_number: YK-HD12-W, gtin: "2900401000006", region: JP,
+         retailer: retailer_a, captured_at: "2026-08-10T10:00:00+09:00", variant: {color: white}}
+      - {product_id: fx-dryer-us, model_number: YK-HD12-US-W, gtin: "290402000009", region: US,
+         retailer: retailer_c, captured_at: "2026-10-10T09:00:00-07:00", variant: {color: white},
+         attributes: {power_consumption: {value: 1875, unit: W}},
+         region_spec: {voltage: {value: 120, unit: V}, market: {value: US}}}
+
+  - family_id: fx-choco
+    line_id: fx-choco
+    generation: 1
+    brand: Lumora
+    category: food.confectionery
+    name: {en: Fixture Chocolate, ja: フィクスチャ チョコレート}
+    products:
+      - product_id: fx-choco-jp
+        gtin: "2900501000005"
+        region: JP
+        retailer: retailer_a
+        captured_at: "2026-08-20T10:00:00+09:00"
+        variant: {flavor: ミルク}
+        attributes: {net_weight: {value: 50, unit: g}}
+        ingredients:
+          items: [砂糖, 全粉乳, カカオマス, "乳化剤(大豆由来)", 香料]
+          allergens: [乳成分, 大豆]
+          may_contain: [落花生]
+          allergen_statement: true
+          exhaustive: true
+        region_spec: {market: {value: JP}}
+      - product_id: fx-choco-us
+        gtin: "290502000008"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-12T09:00:00-07:00"
+        variant: {flavor: milk}
+        attributes: {net_weight: {value: 1.76, unit: oz}}
+        ingredients:
+          items: [sugar, whole milk powder, cocoa butter, soy lecithin, vanilla extract]
+          allergens: [milk, soy]
+          may_contain: [tree nuts]
+          allergen_statement: true
+          exhaustive: true
+        region_spec: {market: {value: US}}
+
+  - family_id: fx-lotion
+    line_id: fx-lotion
+    generation: 1
+    brand: Yukibana
+    category: cosmetics.skincare
+    name: {en: Fixture Lotion, ja: フィクスチャ 化粧水}
+    attributes:
+      volume: {value: 150, unit: mL}
+    products:
+      - product_id: fx-lotion-partial
+        gtin: "2900601000004"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-09-01T10:00:00+09:00"
+        variant: {size: 150 mL}
+        ingredients:      # 主要成分のみ（網羅的でない）
+          items: [水, グリセリン]
+          allergens: []
+          may_contain: []
+          allergen_statement: false
+          exhaustive: false
+        region_spec: {market: {value: JP}}

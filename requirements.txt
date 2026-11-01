@@ -1,0 +1,13 @@
+# Runtime
+pyyaml==6.0.3        # configs/*.yaml と seed の読み込み
+pandas==3.1.0        # Parquet マニフェスト出力
+pyarrow==26.0.0      # Parquet エンジン
+fastapi==0.162.0     # /verify エンドポイント
+uvicorn==0.54.0      # /verify のローカル起動（任意）
+# Test
+pytest==9.2.0
+httpx==0.28.1        # fastapi.testclient が要求
+# Optional（--llm-judge を手動で回す時だけ。テスト・通常実行では不要・import もしない）
+# anthropic==2.3.0
+# Optional（HF Space デモ hf/space/app.py をローカルで動かす時だけ。テスト・本体では不要）
+# gradio==6.31.0

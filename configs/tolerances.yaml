@@ -1,0 +1,39 @@
+# 数値 claim の許容誤差。判定: |claim_SI - gold_SI| <= max(abs_SI, rel * |gold_SI|) なら一致（境界を含む）。
+# abs は「数値 単位」の文字列で書き、units.yaml で SI に換算する。
+# 優先順位: categories[最長一致].attributes > categories[最長一致].dimensions > attributes > default
+version: 1
+
+default:
+  length: {abs: "0.5 mm", rel: 0.01}
+  mass: {abs: "0.5 g", rel: 0.02}
+  volume: {abs: "0.5 ml", rel: 0.01}
+  power: {abs: "0 w", rel: 0.0}          # 定格値は表記どおり
+  voltage: {abs: "0 v", rel: 0.0}
+  current: {abs: "0 a", rel: 0.0}
+  electric_charge: {abs: "0 mah", rel: 0.01}
+  energy: {abs: "0 wh", rel: 0.01}
+  data_size: {abs: "0 byte", rel: 0.0}
+  data_rate: {abs: "0 bps", rel: 0.0}
+  frequency: {abs: "0 hz", rel: 0.0}
+  time: {abs: "0 s", rel: 0.05}
+  count: {abs: "0 count", rel: 0.0}
+  percent: {abs: "0 %", rel: 0.0}
+  dimensionless: {abs: "0", rel: 0.0}
+
+attributes:
+  battery_life: {rel: 0.1}               # 「約 N 時間」表記が多い
+
+categories:
+  electronics.cable:
+    dimensions:
+      length: {abs: "10 mm", rel: 0.0}   # ケーブル長は ±1 cm の表記揺れを許容
+  food:
+    dimensions:
+      mass: {abs: "0.5 g", rel: 0.0}      # 内容量は表示どおり（oz↔g の丸めのみ許容）
+      energy: {abs: "0 j", rel: 0.02}
+    attributes:
+      caffeine: {abs: "1 mg", rel: 0.0}
+  cosmetics:
+    dimensions:
+      volume: {abs: "0.5 ml", rel: 0.0}
+      mass: {abs: "0.5 g", rel: 0.0}

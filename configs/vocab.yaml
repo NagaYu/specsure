@@ -1,0 +1,168 @@
+# 表記揺れ辞書（日英）。照合キー: NFKC → casefold → 空白・区切り除去。
+# ここに無い語は「未認識」として扱い、成分の不在に基づく判定（S1）では推測せず UNKNOWN にする。
+version: 1
+
+brands:
+  Kestrelon: [ケストレロン]
+  Mizunagi: [ミズナギ, 水凪]
+  Torrafen: [トラフェン]
+  Sorameku: [ソラメク]
+  Halvane: [ハルヴェイン]
+  Pinewick: [パインウィック]
+  Yukibana: [ユキバナ, 雪花]
+  Brightquill: [ブライトクイル]
+  Lumora: [ルモラ]
+  Tidewell: [タイドウェル]
+  Corvel: [コーベル]
+  Ostrel: [オストレル]
+
+# 「ブランドなし型番」の解決（verify._compat）で落とす機器種別の一般語
+compat_noise_words: [printer, プリンター, プリンタ, codec, コーデック, laptop, ノートpc, smartphone, スマートフォン, スマホ]
+
+# 互換性項目の句の揺れ（casefold 後に部分置換）
+compat_phrases:
+  usb power delivery: usb pd
+  usb-pd: usb pd
+  bt: bluetooth
+
+# 色。Phase 2 で challenge v0 の失敗事例（パールホワイト）と一般的な色名・修飾つき色名の日英だけを追加（際限なく広げない）
+colors:
+  black: [black, ブラック, 黒, bk, blk, k]
+  white: [white, ホワイト, 白, wh, wt, w]
+  blue: [blue, ブルー, 青, bl, a]
+  navy: [navy, ネイビー, 紺, nv]
+  gray: [gray, grey, グレー, gy, h]
+  silver: [silver, シルバー, 銀, sv]
+  red: [red, レッド, 赤, rd]
+  pink: [pink, ピンク, pk]
+  green: [green, グリーン, 緑, gr]
+  gold: [gold, ゴールド, 金, gd]
+  beige: [beige, ベージュ]
+  cyan: [cyan, シアン, c]
+  magenta: [magenta, マゼンタ, m]
+  yellow: [yellow, イエロー, y]
+  clear: [clear, クリア, 透明, cl]
+
+# 修飾つきの色名。照合では基本色と同一視するが、gold claim の言い換え生成には使わない
+color_variants:
+  black: [jet black, ジェットブラック, matte black, マットブラック]
+  white: [pearl white, パールホワイト, off white, オフホワイト]
+
+# バリアント値・同梱物の汎用語彙
+terms:
+  soy_sauce_flavor: [soy sauce, しょうゆ味, 醤油味, しょうゆ, soy sauce flavor]
+  shrimp_flavor: [shrimp, えび味, 海老味, shrimp flavor]
+  original: [original, オリジナル]
+  nut_free: [nut free, nut-free, ナッツ不使用]
+  milk_chocolate: [milk, ミルク]
+  dark_chocolate: [dark, ダーク, ビター]
+  citrus: [citrus, シトラス]
+  floral: [floral, フローラル]
+  unscented: [unscented, 無香料]
+  bottle: [bottle, ボトル]
+  refill: [refill, refill pouch, 詰め替え, 詰替用, つめかえ用]
+  main_unit: [本体, main unit, charger, 充電器本体]
+  documentation: [取扱説明書, user manual, manual, quick start guide, クイックスタートガイド, installation guide, 取付説明書]
+  usb_c_cable: [usb-c ケーブル, usb-c cable, usb type-c cable, usb type-c ケーブル]
+  pouch: [収納ポーチ, ポーチ, pouch, travel pouch, carrying pouch]
+  charging_case: [充電ケース, charging case]
+  ear_tips: [イヤーピース(s/m/l), イヤーピース, ear tips, ear tips (s/m/l)]
+  battery_unit: [バッテリー本体, battery]
+  screwdriver: [ドライバー, screwdriver]
+  concentrator_nozzle: [速乾ノズル, concentrator nozzle, quick-dry nozzle]
+  set_nozzle: [セットノズル, styling nozzle]
+  diffuser: [ディフューザー, diffuser]
+  ac_adapter: [acアダプター, ac adapter, wall charger]
+  carrying_case: [キャリングケース, carrying case, hard case]
+  wireless_pad: [ワイヤレス充電パッド, wireless charging pad]
+
+# 成分クラス（アレルゲン・訴求成分群）。claim の値がクラス名なら、そのクラスに属する成分の有無で判定する
+ingredient_classes:
+  milk: [milk, 乳, 乳成分, dairy]
+  egg: [egg, eggs, 卵]
+  wheat: [wheat, 小麦, gluten]
+  soy: [soy, 大豆]
+  shrimp: [shrimp, えび, エビ]
+  crab: [crab, かに]
+  shellfish: [shellfish, crustacean shellfish, 甲殻類]
+  peanut: [peanut, peanuts, 落花生, ピーナッツ]
+  tree_nut: [tree nut, tree nuts, ナッツ類]
+  walnut: [walnut, くるみ]
+  buckwheat: [buckwheat, そば]
+  sesame: [sesame, ごま]
+  fish: [fish, 魚]
+  paraben: [paraben, parabens, パラベン]
+  fragrance: [fragrance, parfum]
+  alcohol: [alcohol, アルコール]
+  sulfate: [sulfate, sulfates, サルフェート, 硫酸系界面活性剤]
+  silicone: [silicone, silicones, シリコン, シリコーン]
+
+# 成分 → 表記揺れと所属クラス
+ingredients:
+  rice: {names: [うるち米, 米, rice]}
+  soy_sauce: {names: [しょうゆ, 醤油, soy sauce]}
+  wheat_grain: {names: [wheat flour, 小麦粉], classes: [wheat]}
+  soybean: {names: [soybeans, soybean, 大豆粉], classes: [soy]}
+  sugar: {names: [砂糖, sugar]}
+  rice_seasoning: {names: [米発酵調味料, fermented rice seasoning]}
+  amino_seasoning: {names: ["調味料(アミノ酸等)", "seasoning (amino acids)"]}
+  vegetable_oil: {names: [植物油脂, 植物油, vegetable oil]}
+  shrimp_meat: {names: [えび粉末, shrimp powder], classes: [shrimp, shellfish]}
+  salt: {names: [食塩, 塩, salt]}
+  starch: {names: [でん粉, でんぷん, starch]}
+  corn_syrup: {names: [corn syrup, コーンシロップ]}
+  water: {names: [水, water, aqua]}
+  oats: {names: [オーツ麦, whole grain oats, oats, rolled oats]}
+  honey: {names: [はちみつ, 蜂蜜, honey]}
+  almond: {names: [アーモンド, almonds, almond], classes: [tree_nut]}
+  canola_oil: {names: [canola oil, なたね油, 菜種油]}
+  sunflower_seed: {names: [sunflower seeds, ひまわりの種]}
+  whole_milk_powder: {names: [全粉乳, whole milk powder], classes: [milk]}
+  cocoa_mass: {names: [カカオマス, chocolate liquor, cocoa mass]}
+  cocoa_butter: {names: [ココアバター, cocoa butter]}
+  soy_lecithin: {names: ["乳化剤(大豆由来)", soy lecithin, 大豆レシチン], classes: [soy]}
+  flavoring: {names: [香料, natural flavors, flavoring, fragrance (parfum)], classes: [fragrance]}
+  vanilla_extract: {names: [vanilla extract, バニラ抽出物]}
+  citric_acid: {names: [クエン酸, citric acid]}
+  sodium_citrate: {names: [クエン酸na, クエン酸ナトリウム, sodium citrate]}
+  caffeine: {names: [カフェイン, caffeine]}
+  potassium_chloride: {names: [塩化k, 塩化カリウム, potassium chloride]}
+  sucralose: {names: [スクラロース, sucralose]}
+  glycerin: {names: [グリセリン, glycerin, glycerine]}
+  butylene_glycol: {names: [bg, butylene glycol]}
+  sodium_hyaluronate: {names: [ヒアルロン酸na, ヒアルロン酸, sodium hyaluronate, hyaluronic acid]}
+  niacinamide: {names: [ナイアシンアミド, niacinamide]}
+  phenoxyethanol: {names: [フェノキシエタノール, phenoxyethanol]}
+  methylparaben: {names: [メチルパラベン, methylparaben], classes: [paraben]}
+  zinc_oxide: {names: [酸化亜鉛, zinc oxide]}
+  titanium_dioxide: {names: [酸化チタン, titanium dioxide]}
+  ethanol: {names: [エタノール, ethanol, alcohol denat.], classes: [alcohol]}
+  dimethicone: {names: [ジメチコン, dimethicone], classes: [silicone]}
+  avobenzone: {names: [avobenzone, アボベンゾン]}
+  homosalate: {names: [homosalate, ホモサレート]}
+  octocrylene: {names: [octocrylene, オクトクリレン]}
+  sodium_laureth_sulfate: {names: [ラウレス硫酸na, sodium laureth sulfate], classes: [sulfate]}
+  cocamidopropyl_betaine: {names: [コカミドプロピルベタイン, cocamidopropyl betaine]}
+  sodium_benzoate: {names: [安息香酸na, sodium benzoate]}
+  sodium_lauroyl_methylalanine: {names: [ラウロイルメチルアラニンna, sodium lauroyl methylaminopropionate]}
+  # Phase 3: 実データ pilot の未認識上位のうち一般的な成分名（由来が一意でない「乳化剤」「甘味料」等は入れない）
+  potato: {names: [じゃがいも, ばれいしょ, potato, potatoes]}
+  sweet_potato: {names: [さつまいも, sweet potato]}
+  yeast_extract: {names: [酵母エキス, 酵母エキスパウダー, yeast extract]}
+  dextrin: {names: [デキストリン, dextrin]}
+  starch_syrup: {names: [水あめ, 水飴, starch syrup, glucose syrup]}
+  glucose: {names: [ぶどう糖, glucose, dextrose]}
+  chili_pepper: {names: [唐辛子, chili pepper, red pepper]}
+  onion_powder: {names: [オニオンパウダー, onion powder]}
+  dietary_fiber: {names: [食物繊維, dietary fiber]}
+  aspartame: {names: [アスパルテーム・l-フェニルアラニン化合物, アスパルテーム, aspartame]}
+  stevia: {names: [ステビア, stevia]}
+  licorice: {names: [甘草, licorice]}
+  palm_oil: {names: [パーム油, palm oil]}
+  green_onion: {names: [ねぎ, green onion]}
+
+# 表示義務アレルゲン（地域別）。アレルゲン表示欄がある商品では、ここに含まれるクラスの不在を表示から判断してよい。
+# 注: JP は食品表示基準の特定原材料 8 品目、US は FALCPA + FASTER Act の 9 品目を想定。法務確認前の作業前提。
+mandatory_allergens:
+  JP: [shrimp, crab, walnut, wheat, buckwheat, egg, milk, peanut]
+  US: [milk, egg, fish, shellfish, tree_nut, peanut, wheat, soy, sesame]

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.env.*
+# 生成物（data/claims・data/manifests・data/splits は再現用に同梱、その他は生成物）
+data/snapshots/
+*.pdf
+*.html

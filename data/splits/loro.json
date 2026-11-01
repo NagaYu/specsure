@@ -1,0 +1,830 @@
+{
+ "folds": [
+  {
+   "fold_id": "loro:maker_direct",
+   "hard_negatives": [
+    {
+     "kind": "generation",
+     "test": "jp-mz-ic80-m",
+     "train": "jp-mz-ic70-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-m",
+     "train": "jp-mz-ic80-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-m",
+     "train": "jp-mz-ic80-c"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-m",
+     "train": "jp-mz-ic80-y"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-granola-orig-24oz",
+     "train": "jp-granola-orig"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-granola-orig-24oz",
+     "train": "us-granola-nutfree-12oz"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-granola-orig-24oz",
+     "train": "us-granola-orig-12oz"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-hv-n5-bk",
+     "train": "jp-hv-n5p-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-hv-n5-bk",
+     "train": "us-hv-n5-cl"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-hv-n5-bk",
+     "train": "us-hv-n5p-cl"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-tr-lb-72wh",
+     "train": "jp-tr-lb-56wh"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-tr-lb-72wh",
+     "train": "us-tr-lb-56wh"
+    }
+   ],
+   "held_out": "maker_direct",
+   "test": [
+    "jp-mz-ic80-m",
+    "us-granola-orig-24oz",
+    "us-hv-n5-bk",
+    "us-tr-lb-72wh"
+   ],
+   "train": [
+    "jp-choco-dark",
+    "jp-choco-milk",
+    "jp-granola-orig",
+    "jp-hv-n5p-bk",
+    "jp-kc-pd45-wh",
+    "jp-kc-pd65-bk",
+    "jp-kc-pd65-wh",
+    "jp-kp-10k-bk",
+    "jp-kp-20k-bk",
+    "jp-lotion-150",
+    "jp-lotion-300-refill",
+    "jp-mz-ic70-bk",
+    "jp-mz-ic80-bk",
+    "jp-mz-ic80-c",
+    "jp-mz-ic80-y",
+    "jp-pw-h20-2m",
+    "jp-pw-h21-1m",
+    "jp-pw-h21-2m",
+    "jp-se-10-bk",
+    "jp-se-20-bk",
+    "jp-se-20-wh",
+    "jp-senbei-ebi",
+    "jp-senbei-shoyu",
+    "jp-shampoo-floral",
+    "jp-shampoo-unscented",
+    "jp-sunscreen-40g",
+    "jp-sunscreen-80g",
+    "jp-tidewell-citrus",
+    "jp-tr-lb-56wh",
+    "jp-yk-hd12-k",
+    "jp-yk-hd12-w",
+    "us-choco-milk",
+    "us-granola-nutfree-12oz",
+    "us-granola-orig-12oz",
+    "us-hv-n5-cl",
+    "us-hv-n5p-cl",
+    "us-kc-pd65-bk",
+    "us-kp-20k-bk",
+    "us-pw-h21-2m",
+    "us-se-20-bk",
+    "us-senbei-soy",
+    "us-shampoo-floral",
+    "us-sunscreen-1-4oz",
+    "us-tidewell-citrus",
+    "us-toner-150",
+    "us-tr-lb-56wh",
+    "us-yk-hd12-w"
+   ]
+  },
+  {
+   "fold_id": "loro:retailer_a",
+   "hard_negatives": [
+    {
+     "kind": "sibling_variant",
+     "test": "jp-choco-milk",
+     "train": "jp-choco-dark"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-choco-milk",
+     "train": "us-choco-milk"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-kc-pd45-wh",
+     "train": "jp-kc-pd65-wh"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-kc-pd45-wh",
+     "train": "us-kc-pd65-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-kc-pd65-bk",
+     "train": "jp-kc-pd65-wh"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-kc-pd65-bk",
+     "train": "us-kc-pd65-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-kp-20k-bk",
+     "train": "jp-kp-10k-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-kp-20k-bk",
+     "train": "us-kp-20k-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-lotion-150",
+     "train": "jp-lotion-300-refill"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-lotion-150",
+     "train": "us-toner-150"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-mz-ic80-bk",
+     "train": "jp-mz-ic70-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-bk",
+     "train": "jp-mz-ic80-c"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-bk",
+     "train": "jp-mz-ic80-m"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-mz-ic80-y",
+     "train": "jp-mz-ic70-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-y",
+     "train": "jp-mz-ic80-c"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-y",
+     "train": "jp-mz-ic80-m"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-pw-h20-2m",
+     "train": "jp-pw-h21-2m"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-pw-h20-2m",
+     "train": "us-pw-h21-2m"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-pw-h21-1m",
+     "train": "jp-pw-h21-2m"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-pw-h21-1m",
+     "train": "us-pw-h21-2m"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-se-10-bk",
+     "train": "jp-se-20-bk"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-se-10-bk",
+     "train": "us-se-20-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-se-20-wh",
+     "train": "jp-se-20-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-se-20-wh",
+     "train": "us-se-20-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-senbei-shoyu",
+     "train": "jp-senbei-ebi"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-senbei-shoyu",
+     "train": "us-senbei-soy"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-shampoo-floral",
+     "train": "jp-shampoo-unscented"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-shampoo-floral",
+     "train": "us-shampoo-floral"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-sunscreen-40g",
+     "train": "jp-sunscreen-80g"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-sunscreen-40g",
+     "train": "us-sunscreen-1-4oz"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-tidewell-citrus",
+     "train": "us-tidewell-citrus"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-yk-hd12-w",
+     "train": "jp-yk-hd12-k"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-yk-hd12-w",
+     "train": "us-yk-hd12-w"
+    }
+   ],
+   "held_out": "retailer_a",
+   "test": [
+    "jp-choco-milk",
+    "jp-kc-pd45-wh",
+    "jp-kc-pd65-bk",
+    "jp-kp-20k-bk",
+    "jp-lotion-150",
+    "jp-mz-ic80-bk",
+    "jp-mz-ic80-y",
+    "jp-pw-h20-2m",
+    "jp-pw-h21-1m",
+    "jp-se-10-bk",
+    "jp-se-20-wh",
+    "jp-senbei-shoyu",
+    "jp-shampoo-floral",
+    "jp-sunscreen-40g",
+    "jp-tidewell-citrus",
+    "jp-yk-hd12-w"
+   ],
+   "train": [
+    "jp-choco-dark",
+    "jp-granola-orig",
+    "jp-hv-n5p-bk",
+    "jp-kc-pd65-wh",
+    "jp-kp-10k-bk",
+    "jp-lotion-300-refill",
+    "jp-mz-ic70-bk",
+    "jp-mz-ic80-c",
+    "jp-mz-ic80-m",
+    "jp-pw-h21-2m",
+    "jp-se-20-bk",
+    "jp-senbei-ebi",
+    "jp-shampoo-unscented",
+    "jp-sunscreen-80g",
+    "jp-tr-lb-56wh",
+    "jp-yk-hd12-k",
+    "us-choco-milk",
+    "us-granola-nutfree-12oz",
+    "us-granola-orig-12oz",
+    "us-granola-orig-24oz",
+    "us-hv-n5-bk",
+    "us-hv-n5-cl",
+    "us-hv-n5p-cl",
+    "us-kc-pd65-bk",
+    "us-kp-20k-bk",
+    "us-pw-h21-2m",
+    "us-se-20-bk",
+    "us-senbei-soy",
+    "us-shampoo-floral",
+    "us-sunscreen-1-4oz",
+    "us-tidewell-citrus",
+    "us-toner-150",
+    "us-tr-lb-56wh",
+    "us-tr-lb-72wh",
+    "us-yk-hd12-w"
+   ]
+  },
+  {
+   "fold_id": "loro:retailer_b",
+   "hard_negatives": [
+    {
+     "kind": "sibling_variant",
+     "test": "jp-choco-dark",
+     "train": "jp-choco-milk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-choco-dark",
+     "train": "us-choco-milk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-granola-orig",
+     "train": "us-granola-nutfree-12oz"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-granola-orig",
+     "train": "us-granola-orig-12oz"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-granola-orig",
+     "train": "us-granola-orig-24oz"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-hv-n5p-bk",
+     "train": "us-hv-n5-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-hv-n5p-bk",
+     "train": "us-hv-n5-cl"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-hv-n5p-bk",
+     "train": "us-hv-n5p-cl"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-kc-pd65-wh",
+     "train": "jp-kc-pd45-wh"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-kc-pd65-wh",
+     "train": "jp-kc-pd65-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-kc-pd65-wh",
+     "train": "us-kc-pd65-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-kp-10k-bk",
+     "train": "jp-kp-20k-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-kp-10k-bk",
+     "train": "us-kp-20k-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-lotion-300-refill",
+     "train": "jp-lotion-150"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-lotion-300-refill",
+     "train": "us-toner-150"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-mz-ic70-bk",
+     "train": "jp-mz-ic80-bk"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-mz-ic70-bk",
+     "train": "jp-mz-ic80-m"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-mz-ic70-bk",
+     "train": "jp-mz-ic80-y"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-c",
+     "train": "jp-mz-ic80-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-c",
+     "train": "jp-mz-ic80-m"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-mz-ic80-c",
+     "train": "jp-mz-ic80-y"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-pw-h21-2m",
+     "train": "jp-pw-h20-2m"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-pw-h21-2m",
+     "train": "jp-pw-h21-1m"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-pw-h21-2m",
+     "train": "us-pw-h21-2m"
+    },
+    {
+     "kind": "generation",
+     "test": "jp-se-20-bk",
+     "train": "jp-se-10-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-se-20-bk",
+     "train": "jp-se-20-wh"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-se-20-bk",
+     "train": "us-se-20-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-senbei-ebi",
+     "train": "jp-senbei-shoyu"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-senbei-ebi",
+     "train": "us-senbei-soy"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-shampoo-unscented",
+     "train": "jp-shampoo-floral"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-shampoo-unscented",
+     "train": "us-shampoo-floral"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-sunscreen-80g",
+     "train": "jp-sunscreen-40g"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-sunscreen-80g",
+     "train": "us-sunscreen-1-4oz"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-tr-lb-56wh",
+     "train": "us-tr-lb-56wh"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-tr-lb-56wh",
+     "train": "us-tr-lb-72wh"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "jp-yk-hd12-k",
+     "train": "jp-yk-hd12-w"
+    },
+    {
+     "kind": "region_variant",
+     "test": "jp-yk-hd12-k",
+     "train": "us-yk-hd12-w"
+    }
+   ],
+   "held_out": "retailer_b",
+   "test": [
+    "jp-choco-dark",
+    "jp-granola-orig",
+    "jp-hv-n5p-bk",
+    "jp-kc-pd65-wh",
+    "jp-kp-10k-bk",
+    "jp-lotion-300-refill",
+    "jp-mz-ic70-bk",
+    "jp-mz-ic80-c",
+    "jp-pw-h21-2m",
+    "jp-se-20-bk",
+    "jp-senbei-ebi",
+    "jp-shampoo-unscented",
+    "jp-sunscreen-80g",
+    "jp-tr-lb-56wh",
+    "jp-yk-hd12-k"
+   ],
+   "train": [
+    "jp-choco-milk",
+    "jp-kc-pd45-wh",
+    "jp-kc-pd65-bk",
+    "jp-kp-20k-bk",
+    "jp-lotion-150",
+    "jp-mz-ic80-bk",
+    "jp-mz-ic80-m",
+    "jp-mz-ic80-y",
+    "jp-pw-h20-2m",
+    "jp-pw-h21-1m",
+    "jp-se-10-bk",
+    "jp-se-20-wh",
+    "jp-senbei-shoyu",
+    "jp-shampoo-floral",
+    "jp-sunscreen-40g",
+    "jp-tidewell-citrus",
+    "jp-yk-hd12-w",
+    "us-choco-milk",
+    "us-granola-nutfree-12oz",
+    "us-granola-orig-12oz",
+    "us-granola-orig-24oz",
+    "us-hv-n5-bk",
+    "us-hv-n5-cl",
+    "us-hv-n5p-cl",
+    "us-kc-pd65-bk",
+    "us-kp-20k-bk",
+    "us-pw-h21-2m",
+    "us-se-20-bk",
+    "us-senbei-soy",
+    "us-shampoo-floral",
+    "us-sunscreen-1-4oz",
+    "us-tidewell-citrus",
+    "us-toner-150",
+    "us-tr-lb-56wh",
+    "us-tr-lb-72wh",
+    "us-yk-hd12-w"
+   ]
+  },
+  {
+   "fold_id": "loro:retailer_c",
+   "hard_negatives": [
+    {
+     "kind": "region_variant",
+     "test": "us-choco-milk",
+     "train": "jp-choco-dark"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-choco-milk",
+     "train": "jp-choco-milk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-granola-nutfree-12oz",
+     "train": "jp-granola-orig"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-granola-nutfree-12oz",
+     "train": "us-granola-orig-24oz"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-granola-orig-12oz",
+     "train": "jp-granola-orig"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-granola-orig-12oz",
+     "train": "us-granola-orig-24oz"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-hv-n5-cl",
+     "train": "jp-hv-n5p-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-hv-n5-cl",
+     "train": "us-hv-n5-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-hv-n5p-cl",
+     "train": "jp-hv-n5p-bk"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-hv-n5p-cl",
+     "train": "us-hv-n5-bk"
+    },
+    {
+     "kind": "generation",
+     "test": "us-kc-pd65-bk",
+     "train": "jp-kc-pd45-wh"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-kc-pd65-bk",
+     "train": "jp-kc-pd65-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-kc-pd65-bk",
+     "train": "jp-kc-pd65-wh"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-kp-20k-bk",
+     "train": "jp-kp-10k-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-kp-20k-bk",
+     "train": "jp-kp-20k-bk"
+    },
+    {
+     "kind": "generation",
+     "test": "us-pw-h21-2m",
+     "train": "jp-pw-h20-2m"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-pw-h21-2m",
+     "train": "jp-pw-h21-1m"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-pw-h21-2m",
+     "train": "jp-pw-h21-2m"
+    },
+    {
+     "kind": "generation",
+     "test": "us-se-20-bk",
+     "train": "jp-se-10-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-se-20-bk",
+     "train": "jp-se-20-bk"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-se-20-bk",
+     "train": "jp-se-20-wh"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-senbei-soy",
+     "train": "jp-senbei-ebi"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-senbei-soy",
+     "train": "jp-senbei-shoyu"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-shampoo-floral",
+     "train": "jp-shampoo-floral"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-shampoo-floral",
+     "train": "jp-shampoo-unscented"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-sunscreen-1-4oz",
+     "train": "jp-sunscreen-40g"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-sunscreen-1-4oz",
+     "train": "jp-sunscreen-80g"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-tidewell-citrus",
+     "train": "jp-tidewell-citrus"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-toner-150",
+     "train": "jp-lotion-150"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-toner-150",
+     "train": "jp-lotion-300-refill"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-tr-lb-56wh",
+     "train": "jp-tr-lb-56wh"
+    },
+    {
+     "kind": "sibling_variant",
+     "test": "us-tr-lb-56wh",
+     "train": "us-tr-lb-72wh"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-yk-hd12-w",
+     "train": "jp-yk-hd12-k"
+    },
+    {
+     "kind": "region_variant",
+     "test": "us-yk-hd12-w",
+     "train": "jp-yk-hd12-w"
+    }
+   ],
+   "held_out": "retailer_c",
+   "test": [
+    "us-choco-milk",
+    "us-granola-nutfree-12oz",
+    "us-granola-orig-12oz",
+    "us-hv-n5-cl",
+    "us-hv-n5p-cl",
+    "us-kc-pd65-bk",
+    "us-kp-20k-bk",
+    "us-pw-h21-2m",
+    "us-se-20-bk",
+    "us-senbei-soy",
+    "us-shampoo-floral",
+    "us-sunscreen-1-4oz",
+    "us-tidewell-citrus",
+    "us-toner-150",
+    "us-tr-lb-56wh",
+    "us-yk-hd12-w"
+   ],
+   "train": [
+    "jp-choco-dark",
+    "jp-choco-milk",
+    "jp-granola-orig",
+    "jp-hv-n5p-bk",
+    "jp-kc-pd45-wh",
+    "jp-kc-pd65-bk",
+    "jp-kc-pd65-wh",
+    "jp-kp-10k-bk",
+    "jp-kp-20k-bk",
+    "jp-lotion-150",
+    "jp-lotion-300-refill",
+    "jp-mz-ic70-bk",
+    "jp-mz-ic80-bk",
+    "jp-mz-ic80-c",
+    "jp-mz-ic80-m",
+    "jp-mz-ic80-y",
+    "jp-pw-h20-2m",
+    "jp-pw-h21-1m",
+    "jp-pw-h21-2m",
+    "jp-se-10-bk",
+    "jp-se-20-bk",
+    "jp-se-20-wh",
+    "jp-senbei-ebi",
+    "jp-senbei-shoyu",
+    "jp-shampoo-floral",
+    "jp-shampoo-unscented",
+    "jp-sunscreen-40g",
+    "jp-sunscreen-80g",
+    "jp-tidewell-citrus",
+    "jp-tr-lb-56wh",
+    "jp-yk-hd12-k",
+    "jp-yk-hd12-w",
+    "us-granola-orig-24oz",
+    "us-hv-n5-bk",
+    "us-tr-lb-72wh"
+   ]
+  }
+ ],
+ "split": "loro",
+ "unit": "product"
+}

@@ -1,0 +1,29 @@
+# ベンチ収集用の固定質問セット（Phase 2 で定義、実施は Phase 3 以降・手動のみ）
+# {product} には商品名＋型番（または JAN）を入れる。質問は改変しない（比較可能性のため）。
+# 各質問は「どの claim タイプを引き出したいか」を targets に持つ。
+version: 1
+categories:
+  electronics.charger:
+    - {id: chg-01, ja: "{product}の最大出力と重さを教えてください。", en: "What is the maximum output and the weight of {product}?", targets: [numeric]}
+    - {id: chg-02, ja: "{product}はどのスマホやノートPCの急速充電に対応していますか？", en: "Which phones or laptops does {product} fast-charge?", targets: [compatibility]}
+    - {id: chg-03, ja: "{product}にケーブルは付属しますか？", en: "Does {product} come with a cable?", targets: [bundle]}
+  electronics.ink_cartridge:
+    - {id: ink-01, ja: "{product}はどのプリンターで使えますか？", en: "Which printers is {product} compatible with?", targets: [compatibility]}
+    - {id: ink-02, ja: "{product}は何枚くらい印刷できますか？", en: "How many pages can {product} print?", targets: [numeric]}
+  electronics.earbuds:
+    - {id: ear-01, ja: "{product}の連続再生時間と対応コーデックは？", en: "What is the battery life and which codecs does {product} support?", targets: [numeric, compatibility]}
+    - {id: ear-02, ja: "{product}の同梱物を教えてください。", en: "What is in the box with {product}?", targets: [bundle]}
+  electronics.phone_case:
+    - {id: case-01, ja: "{product}はどの機種に対応していますか？", en: "Which phone models does {product} fit?", targets: [compatibility, variant]}
+  electronics.cable:
+    - {id: cab-01, ja: "{product}の長さと最大転送速度は？", en: "What is the length and the maximum data rate of {product}?", targets: [numeric]}
+  appliance.hair_dryer:
+    - {id: dry-01, ja: "{product}の消費電力と電源電圧は？海外で使えますか？", en: "What is the power consumption and voltage of {product}? Can I use it abroad?", targets: [numeric, region]}
+    - {id: dry-02, ja: "{product}に付属するノズルは？", en: "Which nozzles come with {product}?", targets: [bundle]}
+  food:
+    - {id: food-01, ja: "{product}の原材料とアレルゲンを教えてください。", en: "What are the ingredients and allergens of {product}?", targets: [ingredient]}
+    - {id: food-02, ja: "{product}は乳・卵・小麦を使っていませんか？", en: "Is {product} free of milk, egg and wheat?", targets: [ingredient]}
+    - {id: food-03, ja: "{product}の内容量は？", en: "What is the net weight of {product}?", targets: [numeric]}
+  cosmetics:
+    - {id: cos-01, ja: "{product}はパラベン・香料・アルコールを含みますか？", en: "Does {product} contain parabens, fragrance or alcohol?", targets: [ingredient]}
+    - {id: cos-02, ja: "{product}の容量は？", en: "What is the volume of {product}?", targets: [numeric]}

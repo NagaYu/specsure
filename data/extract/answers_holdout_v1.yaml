@@ -1,0 +1,75 @@
+# extractor v1 のホールドアウト 10 件（SYNTHETIC、Claude Code の手書き）
+# answers_v1.yaml はデバッグで参照したため、こちらを extractor 完成後・実行前にコミットし 1 回だけ評価する。
+# 作成者は extractor のルールを知っているが、意図的に v1 と異なる言い回しを使った。
+version: 1
+synthetic: true
+answers:
+  - id: h01
+    pid: jp-kp-10k-bk
+    text: バッテリー容量は10,000mAhあり、本体は180グラムと軽量です。USB-Cケーブルと収納ポーチが箱に入っています。
+    claims:
+      - {type: numeric, attribute: capacity_charge, value: 10000, unit: mAh}
+      - {type: numeric, attribute: weight, value: 180, unit: g}
+      - {type: bundle, value: USB-Cケーブル}
+      - {type: bundle, value: 収納ポーチ}
+  - id: h02
+    pid: us-tr-lb-72wh
+    text: This 72 Wh pack is made for the Ostrel BookPro 15 (2025). Note that it won't fit the BookAir 14 (2024).
+    claims:
+      - {type: numeric, attribute: capacity_energy, value: 72, unit: Wh}
+      - {type: compatibility, value: Ostrel BookPro 15 (2025)}
+      - {type: compatibility, value: BookAir 14 (2024), polarity: deny}
+  - id: h03
+    pid: jp-choco-milk
+    text: 原材料には全粉乳が使われているので、乳アレルギーの方はご注意ください。落花生は使っていません。
+    claims:
+      - {type: ingredient, value: 全粉乳}
+      - {type: ingredient, value: 落花生, polarity: deny}
+  - id: h04
+    pid: us-se-20-bk
+    text: The SE-20 supports AAC and LDAC, and you get roughly 8 hours of playback per charge.
+    claims:
+      - {type: compatibility, value: AAC}
+      - {type: compatibility, value: LDAC}
+      - {type: numeric, attribute: battery_life, value: 8, unit: hours}
+  - id: h05
+    pid: jp-yk-hd12-k
+    text: 黒モデルも重さ480gで、1200Wのハイパワーです。ディフューザーは付属しません。
+    claims:
+      - {type: numeric, attribute: weight, value: 480, unit: g}
+      - {type: numeric, attribute: power_consumption, value: 1200, unit: W}
+      - {type: bundle, value: ディフューザー, polarity: deny}
+  - id: h06
+    pid: jp-lotion-300-refill
+    text: 詰め替え用は300mLです。グリセリン配合で、香料・着色料は入っていません。
+    claims:
+      - {type: numeric, attribute: volume, value: 300, unit: mL}
+      - {type: ingredient, value: グリセリン}
+      - {type: ingredient, value: 香料, polarity: deny}
+      - {type: ingredient, value: 着色料, polarity: deny}
+  - id: h07
+    pid: us-granola-orig-24oz
+    text: The big 24 oz bag has the same recipe — oats, honey, and almonds. It's not peanut-free, because it may contain peanuts.
+    claims:
+      - {type: numeric, attribute: net_weight, value: 24, unit: oz}
+      - {type: ingredient, value: oats}
+      - {type: ingredient, value: honey}
+      - {type: ingredient, value: almonds}
+  - id: h08
+    pid: jp-pw-h20-2m
+    text: PW-H20-2Mは4K60までの対応で、8K60には非対応です。転送速度は18Gbpsです。
+    claims:
+      - {type: compatibility, value: 4K60}
+      - {type: compatibility, value: 8K60, polarity: deny}
+      - {type: numeric, attribute: max_data_rate, value: 18, unit: Gbps}
+  - id: h09
+    pid: us-tidewell-citrus
+    text: I'd guess it tastes great. Honestly I'm not sure about the caffeine level.
+    claims: []
+  - id: h10
+    pid: jp-hv-n5p-bk
+    text: このケースはCorvel Nova 5 Pro専用で、Nova 5には使えません。重量は32gです。
+    claims:
+      - {type: compatibility, value: Corvel Nova 5 Pro}
+      - {type: compatibility, value: Nova 5, polarity: deny}
+      - {type: numeric, attribute: weight, value: 32, unit: g}

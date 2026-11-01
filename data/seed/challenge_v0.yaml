@@ -1,0 +1,73 @@
+# SpecBench v0 チャレンジセット（手書き）
+#
+# 自動生成の gold / mutation は verifier と同じ語彙・許容誤差の定義から作るため、評価が循環しやすい。
+# このファイルは「語彙に無い言い回しの真の主張（expected PASS）」と「現実的な誤り（expected FAIL）」を手で書いたもの。
+# 研究衛生のため、このセットの結果を見て verifier を調整しない（調整したら新しいチャレンジセットを作る）。
+#
+# ref: gtin | model   … product_id の商品の GTIN / 型番を product_ref に入れる（または product_ref を直接書く）
+# evidence_in_snapshot: false … 誤りだが対象スナップショットだけでは断定できない（UNKNOWN が設計どおり）
+version: 1
+items:
+  # ───── 語彙外の言い回しによる「真」の主張（expected PASS） ─────
+  - {id: c01, pid: jp-kc-pd65-bk, ref: model, type: numeric, attribute: output_power, value: 65, unit: watts, expected: PASS, note: 単位語 watts が辞書外}
+  - {id: c02, pid: jp-kc-pd65-bk, ref: gtin, type: numeric, attribute: weight, value: 0.25, unit: lb, expected: PASS, note: 112 g ≒ 0.25 lb（2% 以内）}
+  - {id: c03, pid: jp-kc-pd65-bk, ref: model, type: compatibility, value: Nova 5 Pro, expected: PASS, note: ブランド省略、網羅的でないリスト}
+  - {id: c04, pid: jp-mz-ic80-c, ref: model, type: compatibility, value: PX-820 printer, expected: PASS, note: ブランド省略＋「printer」付き、網羅的リスト}
+  - {id: c05, pid: jp-mz-ic80-c, ref: gtin, type: compatibility, value: ミズナギ PX‐830F, expected: PASS, note: カタカナブランド＋Unicode ハイフン}
+  - {id: c06, pid: jp-mz-ic80-bk, ref: model, type: numeric, attribute: page_yield, value: 500, unit: 枚, expected: PASS}
+  - {id: c07, pid: us-tr-lb-56wh, ref: model, type: compatibility, value: BookAir 14 2025, expected: PASS, note: 括弧・ブランド省略、網羅的リスト}
+  - {id: c08, pid: us-tr-lb-56wh, ref: gtin, type: numeric, attribute: capacity_energy, value: 56, unit: watt-hours, expected: PASS, note: 単位語が辞書外}
+  - {id: c09, pid: us-tr-lb-72wh, ref: model, type: numeric, attribute: capacity_charge, value: 6.3, unit: Ah, expected: PASS, note: 6315 mAh の丸め（1% 以内）}
+  - {id: c10, pid: jp-se-20-bk, ref: model, type: numeric, attribute: battery_life, value: 約8時間, expected: PASS, note: 「約」付き文字列}
+  - {id: c11, pid: jp-se-20-wh, ref: model, type: variant, attribute: color, value: パールホワイト, expected: PASS, note: 色名の修飾}
+  - {id: c12, pid: jp-se-20-bk, ref: gtin, type: compatibility, value: LDAC codec, expected: PASS, note: 「codec」付き}
+  - {id: c13, pid: us-hv-n5-cl, ref: model, type: compatibility, value: Nova 5, expected: PASS, note: ブランド省略、網羅的リスト}
+  - {id: c14, pid: us-hv-n5-bk, ref: gtin, type: variant, attribute: color, value: Black, expected: PASS}
+  - {id: c15, pid: jp-pw-h21-2m, ref: model, type: numeric, attribute: length, value: 6.6, unit: ft, expected: PASS, note: 2 m = 6.56 ft の丸め}
+  - {id: c16, pid: jp-yk-hd12-w, ref: model, type: region, attribute: voltage, value: AC100V, expected: PASS, note: 「AC」接頭}
+  - {id: c17, pid: us-yk-hd12-w, ref: model, type: region, attribute: frequency, value: 60, unit: Hz, expected: PASS}
+  - {id: c18, pid: jp-yk-hd12-k, ref: gtin, type: bundle, value: quick drying nozzle, expected: PASS, note: 同梱物名の言い換え（網羅的リスト）}
+  - {id: c19, pid: jp-kp-20k-bk, ref: gtin, type: model, value: KP-20K (black), expected: PASS, note: 色を英単語で括弧書き}
+  - {id: c20, pid: jp-kp-20k-bk, ref: model, type: numeric, attribute: capacity_charge, value: "20,000mAh", expected: PASS}
+  - {id: c21, pid: jp-senbei-shoyu, ref: gtin, type: ingredient, value: gluten, expected: PASS, note: 小麦をグルテンと言う}
+  - {id: c22, pid: jp-senbei-shoyu, ref: gtin, type: ingredient, value: peanuts, polarity: deny, expected: PASS, note: 表示義務アレルゲン欄に無い}
+  - {id: c23, pid: jp-choco-milk, ref: gtin, type: ingredient, value: milk solids, expected: PASS, note: 成分語が辞書外（全粉乳の言い換え）}
+  - {id: c24, pid: jp-choco-milk, ref: gtin, type: ingredient, value: dairy, expected: PASS}
+  - {id: c25, pid: us-choco-milk, ref: gtin, type: ingredient, value: soy lecithin, expected: PASS}
+  - {id: c26, pid: us-granola-nutfree-12oz, ref: gtin, type: ingredient, value: almonds, polarity: deny, expected: PASS}
+  - {id: c27, pid: us-granola-nutfree-12oz, ref: gtin, type: ingredient, value: nuts, polarity: deny, expected: PASS, note: 「nuts」は辞書外の総称}
+  - {id: c28, pid: us-tidewell-citrus, ref: gtin, type: numeric, attribute: caffeine, value: 0.08, unit: g, expected: PASS}
+  - {id: c29, pid: jp-lotion-150, ref: gtin, type: ingredient, value: parabens, polarity: deny, expected: PASS}
+  - {id: c30, pid: jp-lotion-150, ref: gtin, type: ingredient, value: alcohol, polarity: deny, expected: PASS}
+  - {id: c31, pid: jp-shampoo-unscented, ref: gtin, type: ingredient, value: sulfates, polarity: deny, expected: PASS}
+  - {id: c32, pid: jp-shampoo-unscented, ref: gtin, type: ingredient, value: 香料, polarity: deny, expected: PASS}
+  - {id: c33, pid: us-sunscreen-1-4oz, ref: gtin, type: numeric, attribute: volume, value: 41, unit: mL, expected: PASS}
+  - {id: c34, pid: us-shampoo-floral, ref: gtin, type: numeric, attribute: volume, value: 400, unit: mL, expected: PASS, note: 13.5 fl oz (400 mL) 表記の丸め}
+
+  # ───── 現実的な誤り（expected FAIL） ─────
+  - {id: c35, pid: jp-choco-milk, ref: gtin, type: ingredient, value: dairy, polarity: deny, expected: FAIL, error_type: E7, note: ミルクチョコを乳不使用と言う}
+  - {id: c36, pid: jp-choco-dark, ref: gtin, type: ingredient, value: milk, polarity: deny, expected: FAIL, error_type: E7, note: 「乳成分を含む可能性」表示がある}
+  - {id: c37, pid: us-granola-orig-12oz, ref: gtin, type: ingredient, value: tree nuts, polarity: deny, expected: FAIL, error_type: E7}
+  - {id: c38, pid: us-granola-orig-24oz, ref: gtin, type: ingredient, value: peanuts, polarity: deny, expected: FAIL, error_type: E7, note: may contain peanuts}
+  - {id: c39, pid: jp-mz-ic80-bk, ref: model, type: compatibility, value: Mizunagi PX-710, expected: FAIL, error_type: E4}
+  - {id: c40, pid: jp-mz-ic70-bk, ref: model, type: compatibility, value: Mizunagi PX-820, expected: FAIL, error_type: E1, note: 後継世代のプリンタ}
+  - {id: c41, pid: us-tr-lb-72wh, ref: model, type: compatibility, value: Ostrel BookAir 14 (2025), expected: FAIL, error_type: E2, note: 56Wh 兄弟の対応機種}
+  - {id: c42, pid: jp-kc-pd45-wh, ref: model, type: numeric, attribute: output_power, value: 65, unit: W, expected: FAIL, error_type: E1}
+  - {id: c43, pid: jp-kp-10k-bk, ref: model, type: numeric, attribute: capacity_charge, value: 20000, unit: mAh, expected: FAIL, error_type: E2}
+  - {id: c44, pid: jp-yk-hd12-w, ref: model, type: region, attribute: voltage, value: 120, unit: V, expected: FAIL, error_type: E8}
+  - {id: c45, pid: us-yk-hd12-w, ref: model, type: numeric, attribute: power_consumption, value: 1200, unit: W, expected: FAIL, error_type: E8}
+  - {id: c46, pid: jp-pw-h20-2m, ref: model, type: compatibility, value: 8K60, expected: FAIL, error_type: E1}
+  - {id: c47, pid: jp-pw-h20-2m, ref: gtin, type: numeric, attribute: max_data_rate, value: 48, unit: Gbps, expected: FAIL, error_type: E1}
+  - {id: c48, pid: us-hv-n5-cl, ref: model, type: compatibility, value: Corvel Nova 5 Pro, expected: FAIL, error_type: E2}
+  - {id: c49, pid: us-hv-n5-cl, ref: gtin, type: numeric, attribute: thickness, value: 1.2, unit: cm, expected: FAIL, error_type: E3}
+  - {id: c50, pid: jp-tidewell-citrus, ref: gtin, type: numeric, attribute: caffeine, value: 80, unit: mg, expected: FAIL, error_type: E8, note: US 版のカフェイン量}
+  - {id: c51, pid: us-toner-150, ref: gtin, type: ingredient, value: parabens, polarity: deny, expected: FAIL, error_type: E8, note: JP 版は不使用だが US 版はメチルパラベン配合}
+  - {id: c52, pid: jp-se-10-bk, ref: model, type: compatibility, value: LDAC, expected: FAIL, error_type: E1}
+  - {id: c53, pid: jp-sunscreen-80g, ref: gtin, type: ingredient, value: alcohol, polarity: deny, expected: FAIL, error_type: E7, evidence_in_snapshot: false, note: 同処方の 40g はエタノール配合。80g のスナップショットは有効成分のみ}
+  - {id: c54, pid: jp-granola-orig, ref: gtin, type: ingredient, value: almond, polarity: deny, expected: FAIL, error_type: E7}
+  - {id: c55, pid: us-kc-pd65-bk, ref: model, type: bundle, value: USB-C cable, expected: FAIL, error_type: E5}
+  - {id: c56, pid: jp-se-20-bk, ref: model, type: numeric, attribute: battery_life, value: 24, unit: h, expected: FAIL, error_type: E3, note: ケース込みの合計時間と取り違え}
+  - {id: c57, pid: jp-kc-pd65-wh, ref: gtin, type: model, value: KC-PD65-BK, expected: FAIL, error_type: E2}
+  - {id: c58, pid: jp-lotion-300-refill, ref: gtin, type: variant, attribute: size, value: 150 mL, expected: FAIL, error_type: E2}
+  - {id: c59, pid: us-sunscreen-1-4oz, ref: gtin, type: region, attribute: pa_rating, value: PA++++, expected: FAIL, error_type: E8, evidence_in_snapshot: false, note: US 版は PA 表示なし（属性が無いので断定不能）}
+  - {id: c60, pid: jp-choco-milk, ref: gtin, type: ingredient, value: lactose, polarity: deny, expected: FAIL, error_type: E7, evidence_in_snapshot: false, note: 乳糖は辞書外。全粉乳は乳糖を含むが語彙では判断不能}

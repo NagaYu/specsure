@@ -1,0 +1,225 @@
+# extractor v1 評価用のエージェント風回答 30 件（SYNTHETIC）
+#
+# - すべて Claude Code が手書きした合成文。実在の買い物エージェントの回答ではない。
+# - 対象商品は SpecBench v0 の合成 seed（架空ブランド）。
+# - 研究衛生: このファイル（回答文と人手ラベル）は extractor を実装する前にコミットした。
+#
+# claims（人手ラベル）: その文に明示的に書かれている検証可能な主張だけ。推測・比較・評判・ヘッジは主張にしない。
+#   type: numeric | model | compatibility | ingredient | bundle | region | variant
+#   polarity: affirm（既定）| deny
+version: 1
+synthetic: true
+answers:
+  - id: a01
+    pid: jp-kc-pd65-bk
+    text: このKC-PD65-BKは最大65Wで出力でき、重さは約112gです。USB PD 3.0とPPSに対応しているので、Nova 5 Proの急速充電にも使えます。
+    claims:
+      - {type: numeric, attribute: output_power, value: 65, unit: W}
+      - {type: numeric, attribute: weight, value: 112, unit: g}
+      - {type: compatibility, value: USB PD 3.0}
+      - {type: compatibility, value: PPS}
+      - {type: compatibility, value: Nova 5 Pro}
+  - id: a02
+    pid: us-kc-pd65-bk
+    text: Yes — the KC-PD65 outputs up to 65 W and weighs 3.95 oz. It comes with a quick start guide, but the USB-C cable is sold separately.
+    claims:
+      - {type: numeric, attribute: output_power, value: 65, unit: W}
+      - {type: numeric, attribute: weight, value: 3.95, unit: oz}
+      - {type: bundle, value: quick start guide}
+      - {type: bundle, value: USB-C cable, polarity: deny}
+  - id: a03
+    pid: jp-mz-ic80-bk
+    text: MZ-IC80-BKはPX-810、PX-820、PX-830Fに対応しています。PX-710には対応していません。
+    claims:
+      - {type: compatibility, value: PX-810}
+      - {type: compatibility, value: PX-820}
+      - {type: compatibility, value: PX-830F}
+      - {type: compatibility, value: PX-710, polarity: deny}
+  - id: a04
+    pid: jp-mz-ic70-bk
+    text: This cartridge is compatible with the Mizunagi PX-700 and PX-710. It prints about 350 pages.
+    claims:
+      - {type: compatibility, value: Mizunagi PX-700}
+      - {type: compatibility, value: PX-710}
+      - {type: numeric, attribute: page_yield, value: 350, unit: pages}
+  - id: a05
+    pid: us-tr-lb-56wh
+    text: The TR-LB-56WH is a 56Wh, 11.4V battery. It works with the Ostrel BookAir 14 (2024) and (2025), but it is not compatible with the BookPro 15.
+    claims:
+      - {type: numeric, attribute: capacity_energy, value: 56, unit: Wh}
+      - {type: numeric, attribute: nominal_voltage, value: 11.4, unit: V}
+      - {type: compatibility, value: Ostrel BookAir 14 (2024)}
+      - {type: compatibility, value: Ostrel BookAir 14 (2025)}
+      - {type: compatibility, value: BookPro 15, polarity: deny}
+  - id: a06
+    pid: jp-se-20-bk
+    text: SE-20はBluetooth 5.3とLDACに対応し、イヤホン単体で約8時間再生できます。重さは片耳4.8gです。
+    claims:
+      - {type: compatibility, value: Bluetooth 5.3}
+      - {type: compatibility, value: LDAC}
+      - {type: numeric, attribute: battery_life, value: 8, unit: h}
+      - {type: numeric, attribute: weight, value: 4.8, unit: g}
+  - id: a07
+    pid: jp-se-20-wh
+    text: ホワイトモデルにも充電ケースとイヤーピース（S/M/L）が付属します。
+    claims:
+      - {type: bundle, value: 充電ケース}
+      - {type: bundle, value: イヤーピース（S/M/L）}
+  - id: a08
+    pid: us-hv-n5-cl
+    text: This clear case fits the Corvel Nova 5 only. It does not fit the Nova 5 Pro. It weighs 28 g and is 1.2 mm thick.
+    claims:
+      - {type: compatibility, value: Corvel Nova 5}
+      - {type: compatibility, value: Nova 5 Pro, polarity: deny}
+      - {type: numeric, attribute: weight, value: 28, unit: g}
+      - {type: numeric, attribute: thickness, value: 1.2, unit: mm}
+  - id: a09
+    pid: jp-pw-h21-2m
+    text: 長さ2mのケーブルで、最大48Gbpsの伝送に対応します。8K60や4K120にも対応しています。
+    claims:
+      - {type: numeric, attribute: length, value: 2, unit: m}
+      - {type: numeric, attribute: max_data_rate, value: 48, unit: Gbps}
+      - {type: compatibility, value: 8K60}
+      - {type: compatibility, value: 4K120}
+  - id: a10
+    pid: jp-yk-hd12-w
+    text: YK-HD12-Wは消費電力1200W、電圧はAC100Vです。速乾ノズルとセットノズルが付属しています。
+    claims:
+      - {type: numeric, attribute: power_consumption, value: 1200, unit: W}
+      - {type: region, attribute: voltage, value: 100, unit: V}
+      - {type: bundle, value: 速乾ノズル}
+      - {type: bundle, value: セットノズル}
+  - id: a11
+    pid: us-yk-hd12-w
+    text: It's rated 1875 W and runs on 120 V, 60 Hz. A diffuser is included.
+    claims:
+      - {type: numeric, attribute: power_consumption, value: 1875, unit: W}
+      - {type: region, attribute: voltage, value: 120, unit: V}
+      - {type: region, attribute: frequency, value: 60, unit: Hz}
+      - {type: bundle, value: diffuser}
+  - id: a12
+    pid: jp-kp-20k-bk
+    text: 容量は20000mAhで、重さは340gです。最大45W出力に対応しています。収納ポーチ付きです。
+    claims:
+      - {type: numeric, attribute: capacity_charge, value: 20000, unit: mAh}
+      - {type: numeric, attribute: weight, value: 340, unit: g}
+      - {type: numeric, attribute: output_power, value: 45, unit: W}
+      - {type: bundle, value: 収納ポーチ}
+  - id: a13
+    pid: jp-senbei-shoyu
+    text: このおせんべいは小麦と大豆を含みます。えびは原材料に使われていませんが、同じ工場でえびを扱っています。
+    claims:
+      - {type: ingredient, value: 小麦}
+      - {type: ingredient, value: 大豆}
+      - {type: ingredient, value: えび, polarity: deny}
+  - id: a14
+    pid: jp-senbei-ebi
+    text: えび味は内容量80gで、えびを使用しています。
+    claims:
+      - {type: numeric, attribute: net_weight, value: 80, unit: g}
+      - {type: ingredient, value: えび}
+  - id: a15
+    pid: us-granola-nutfree-12oz
+    text: "Good news: this granola is nut-free and peanut-free. Net weight is 12 oz."
+    claims:
+      - {type: ingredient, value: nut, polarity: deny}
+      - {type: ingredient, value: peanut, polarity: deny}
+      - {type: numeric, attribute: net_weight, value: 12, unit: oz}
+  - id: a16
+    pid: us-granola-orig-12oz
+    text: The original granola contains almonds and honey, and it's made in a facility that also handles peanuts.
+    claims:
+      - {type: ingredient, value: almonds}
+      - {type: ingredient, value: honey}
+  - id: a17
+    pid: jp-choco-milk
+    text: ミルクチョコは乳成分と大豆を含みます。小麦は使用していません。
+    claims:
+      - {type: ingredient, value: 乳成分}
+      - {type: ingredient, value: 大豆}
+      - {type: ingredient, value: 小麦, polarity: deny}
+  - id: a18
+    pid: jp-choco-dark
+    text: ダークチョコは乳成分不使用です。内容量は50gです。
+    claims:
+      - {type: ingredient, value: 乳成分, polarity: deny}
+      - {type: numeric, attribute: net_weight, value: 50, unit: g}
+  - id: a19
+    pid: us-choco-milk
+    text: It contains milk and soy lecithin. It's gluten-free.
+    claims:
+      - {type: ingredient, value: milk}
+      - {type: ingredient, value: soy lecithin}
+      - {type: ingredient, value: gluten, polarity: deny}
+  - id: a20
+    pid: us-tidewell-citrus
+    text: Each serving has 80 mg of caffeine and it's sweetened with sucralose.
+    claims:
+      - {type: numeric, attribute: caffeine, value: 80, unit: mg}
+      - {type: ingredient, value: sucralose}
+  - id: a21
+    pid: jp-lotion-150
+    text: この化粧水はパラベンフリー、アルコールフリーで、ヒアルロン酸Naとナイアシンアミドを配合しています。容量は150mLです。
+    claims:
+      - {type: ingredient, value: パラベン, polarity: deny}
+      - {type: ingredient, value: アルコール, polarity: deny}
+      - {type: ingredient, value: ヒアルロン酸Na}
+      - {type: ingredient, value: ナイアシンアミド}
+      - {type: numeric, attribute: volume, value: 150, unit: mL}
+  - id: a22
+    pid: us-toner-150
+    text: This toner is fragrance-free and contains glycerin.
+    claims:
+      - {type: ingredient, value: fragrance, polarity: deny}
+      - {type: ingredient, value: glycerin}
+  - id: a23
+    pid: jp-sunscreen-40g
+    text: SPF50+・PA++++の日焼け止めで、エタノールを含みます。
+    claims:
+      - {type: numeric, attribute: spf, value: 50}
+      - {type: region, attribute: pa_rating, value: PA++++}
+      - {type: ingredient, value: エタノール}
+  - id: a24
+    pid: jp-shampoo-unscented
+    text: 無香料タイプで、ノンシリコン・サルフェートフリーです。容量は400mLです。
+    claims:
+      - {type: ingredient, value: 香料, polarity: deny}
+      - {type: ingredient, value: シリコン, polarity: deny}
+      - {type: ingredient, value: サルフェート, polarity: deny}
+      - {type: numeric, attribute: volume, value: 400, unit: mL}
+  - id: a25
+    pid: jp-shampoo-floral
+    text: おすすめです！香りが良いと評判です。
+    claims: []
+  - id: a26
+    pid: jp-kc-pd45-wh
+    text: 前のモデルよりコンパクトで、旅行にも便利だと思います。
+    claims: []
+  - id: a27
+    pid: jp-tr-lb-56wh
+    text: 交換用バッテリーの型番はTR-LB-56WH-JPです。ドライバーと取付説明書が同梱されています。
+    claims:
+      - {type: model, value: TR-LB-56WH-JP}
+      - {type: bundle, value: ドライバー}
+      - {type: bundle, value: 取付説明書}
+  - id: a28
+    pid: jp-kp-10k-bk
+    text: The KP-10K-BK has a 10,000 mAh capacity and weighs 180 g. It does not come with an AC adapter.
+    claims:
+      - {type: numeric, attribute: capacity_charge, value: 10000, unit: mAh}
+      - {type: numeric, attribute: weight, value: 180, unit: g}
+      - {type: bundle, value: AC adapter, polarity: deny}
+  - id: a29
+    pid: jp-mz-ic80-c
+    text: シアンは約400枚印刷でき、インク量は6.2mlです。
+    claims:
+      - {type: numeric, attribute: page_yield, value: 400, unit: pages}
+      - {type: numeric, attribute: ink_volume, value: 6.2, unit: ml}
+  - id: a30
+    pid: us-sunscreen-1-4oz
+    text: It's a 1.4 fl oz bottle with SPF 50. It contains avobenzone and homosalate.
+    claims:
+      - {type: numeric, attribute: volume, value: 1.4, unit: fl oz}
+      - {type: numeric, attribute: spf, value: 50}
+      - {type: ingredient, value: avobenzone}
+      - {type: ingredient, value: homosalate}

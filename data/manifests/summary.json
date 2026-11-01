@@ -1,0 +1,86 @@
+{
+ "seed_file": "data/seed/specbench_v0.yaml",
+ "mutation_seed": 0,
+ "products": 51,
+ "by_region": {
+  "JP": 32,
+  "US": 19
+ },
+ "by_top_category": {
+  "electronics": 27,
+  "appliance": 3,
+  "food": 12,
+  "cosmetics": 9
+ },
+ "by_category": {
+  "appliance.hair_dryer": 3,
+  "cosmetics.haircare": 3,
+  "cosmetics.skincare": 3,
+  "cosmetics.sunscreen": 3,
+  "electronics.cable": 4,
+  "electronics.charger": 4,
+  "electronics.earbuds": 4,
+  "electronics.ink_cartridge": 5,
+  "electronics.laptop_battery": 3,
+  "electronics.phone_case": 4,
+  "electronics.power_bank": 3,
+  "food.beverage": 2,
+  "food.cereal": 4,
+  "food.confectionery": 3,
+  "food.snack": 3
+ },
+ "by_retailer": {
+  "maker_direct": 4,
+  "retailer_a": 16,
+  "retailer_b": 15,
+  "retailer_c": 16
+ },
+ "families": 19,
+ "claims": {
+  "gold": 545,
+  "mutation": 413,
+  "probe": 57,
+  "challenge": 60
+ },
+ "gold_by_type": {
+  "numeric": 118,
+  "variant": 65,
+  "region": 84,
+  "ingredient": 116,
+  "model": 30,
+  "compatibility": 88,
+  "bundle": 44
+ },
+ "mutation_by_error_type": {
+  "E1": 34,
+  "E2": 64,
+  "E3": 102,
+  "E4": 54,
+  "E5": 42,
+  "E7": 42,
+  "E8": 75
+ },
+ "mutation_by_severity": {
+  "S1": 86,
+  "S2": 149,
+  "S3": 178
+ },
+ "splits": {
+  "loco": {
+   "folds": 15,
+   "hard_negative_pairs": 0,
+   "leak_issues": 0
+  },
+  "loro": {
+   "folds": 4,
+   "hard_negative_pairs": 116,
+   "leak_issues": 0
+  },
+  "temporal": {
+   "folds": 1,
+   "hard_negative_pairs": 40,
+   "leak_issues": 0
+  }
+ },
+ "temporal_cutoff": "2026-09-15"
+}

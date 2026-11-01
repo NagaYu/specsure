@@ -1,0 +1,29 @@
+# 型番正規化の規則。NFKC（全角→半角）→ 大文字化 → 区切り文字で分割 → 末尾トークンからサフィックスを分離。
+version: 1
+
+# NFKC 後に残る区切り文字（ハイフン揺れ・長音・括弧など）。これらで分割し、比較キーでは除去する
+separators: ["-", "‐", "‑", "‒", "–", "—", "―", "−", "ー", "_", " ", ".", "/", "(", ")", "[", "]", "+"]
+
+# 末尾トークンの分類。order の順に一度ずつ判定し、min_head は「分離後に残すべき先頭トークン数」
+suffix_rules:
+  order: [region, color, branch, capacity]
+  region:
+    min_head: 2
+    codes: [US, JP, EU, UK, CN, KR, TW, AU]
+  color:
+    min_head: 2
+    # 色コード → 正規の色名（vocab.yaml の colors のキー）。曖昧な B（black/blue）・G（green/gold）は入れない
+    codes: {BK: black, K: black, BLK: black, WH: white, W: white, WT: white, BL: blue, A: blue,
+            R: red, RD: red, GR: green, H: gray, GY: gray, SV: silver, S: silver, PK: pink, P: pink,
+            GD: gold, N: gold, Y: yellow, YE: yellow, C: cyan, M: magenta, CL: clear, NV: navy}
+  branch:
+    # JP 型番の枝番（-01, -2 など）。先頭に 2 トークン以上残る場合のみ
+    min_head: 2
+    pattern: '^\d{1,2}$'
+  capacity:
+    # 容量・長さ・出力のサフィックス（-20K, -128GB, -2M, -56WH）
+    min_head: 1
+    pattern: '^\d+(\.\d+)?(GB|TB|MB|K|MAH|ML|L|M|CM|MM|W|WH|G|OZ)$'
+
+# GTIN として受け付ける桁数（GTIN-8 / UPC-A / EAN-13・JAN / GTIN-14）
+gtin_lengths: [8, 12, 13, 14]

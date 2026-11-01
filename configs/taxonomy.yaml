@@ -1,0 +1,100 @@
+# SpecSure 誤り類型 (E1–E8) と重大度 (S1–S3)
+# 正本: 設計書（Phase 2 で取り込み、2026-10-31）。Phase 1 作業定義との差分は docs/TAXONOMY.md。
+version: 2
+
+error_types:
+  E1:
+    name: 型番・世代混同
+    description: 兄弟世代・前モデル（または後継）の型番や値を対象商品のものとして述べる
+    status: covered
+  E2:
+    name: バリアント取り違え
+    description: 同一ファミリーの兄弟バリアント（容量・色・サイズ・味など）の値を述べる
+    status: covered
+  E3:
+    name: 数値捏造・単位ミス
+    description: 根拠の無い数値、許容誤差を超える数値のずれ、単位の取り違え（inch を mm と読む等）
+    status: covered
+  E4:
+    name: 互換性の捏造
+    description: 互換性リスト外の機種を対応と言う／対応機種を非対応と言う
+    status: covered
+  E5:
+    name: 同梱物・数量の誤り
+    description: 同梱されない物を同梱と言う／同梱物を否定する／入数・個数を誤る（数量は numeric の pack_count、Phase 3 で追加）
+    status: covered
+  E6:
+    name: 価格・在庫の陳腐化
+    description: 古い価格・在庫情報を現在のものとして述べる
+    status: out_of_scope   # 時刻依存のため対象外。price claim は常に UNKNOWN
+  E7:
+    name: 成分・アレルゲンの誤り
+    description: 含有成分の否定／含まれない成分の追加／アレルゲン表示の誤り（重大度 S1）
+    status: covered
+    severity: S1
+  E8:
+    name: 地域仕様の混同
+    description: 他地域版（電圧・周波数・内容量表記・処方など）の値を述べる
+    status: covered
+
+severities:
+  S1:
+    name: 安全・法務
+    description: 成分・アレルゲン・カフェイン量など、誤ると健康被害や表示上の法的問題に直結する主張
+  S2:
+    name: 購入を無効にする
+    description: 互換性・型番・バリアント・主要容量・電圧など、誤ると使用不能・返品になる主張
+  S3:
+    name: 体験を損なう
+    description: 重量・寸法・電池持ち・同梱物など、誤ると不満につながるが購入目的は損なわない主張
+
+# 主張タイプ → 重大度の既定値。属性の上書きが優先し、claim 入力側のヒントとは厳しい方を採る
+severity_rules:
+  by_claim_type:
+    ingredient: S1
+    compatibility: S2
+    model: S2
+    variant: S2
+    region: S2
+    numeric: S3
+    bundle: S3
+    price: S3
+  by_attribute:            # 主張タイプを問わず属性名で上書き
+    caffeine: S1
+    output_power: S2
+    max_power: S2
+    capacity_charge: S2
+    capacity_energy: S2
+    length: S2
+    max_data_rate: S2
+    nominal_voltage: S2
+    spf: S2
+    voltage: S2
+    frequency: S2
+    plug_type: S2
+    pa_rating: S2
+    market: S3
+    pack_count: S2            # E5 数量（入数）。Phase 3 で追加
+
+# claim 単位 verdict × 重大度 → 商品単位の集約判定
+# S1 の FAIL/UNKNOWN は BLOCK、S2 の FAIL は BLOCK、S3 の FAIL は WARN。
+# S2 の UNKNOWN は Phase 2 で WARN に決定（Phase 1 は PASS）。S3 の UNKNOWN は PASS（unverified として列挙）。
+aggregation_policy:
+  S1: {PASS: PASS, FAIL: BLOCK, UNKNOWN: BLOCK}
+  S2: {PASS: PASS, FAIL: BLOCK, UNKNOWN: WARN}
+  S3: {PASS: PASS, FAIL: WARN, UNKNOWN: PASS}
+
+# 主張タイプと既定の誤り類型の対応（verifier の診断と mutation の既定ラベルに使う）
+# 属性ごとの既定類型（claim タイプの既定より優先）
+attribute_default_error:
+  pack_count: E5
+
+claim_type_default_error:
+  model: E1
+  variant: E2
+  numeric: E3
+  compatibility: E4
+  bundle: E5
+  price: E6
+  ingredient: E7
+  region: E8

@@ -1,0 +1,748 @@
+# SpecBench v0 seed — 手作業で属性化した仕様スナップショット
+#
+# 重要: Phase 1 の seed は「合成（架空）商品」で構成する。ブランド・型番・機種名はすべて架空で、
+#       GTIN/JAN は GS1 の店内用（restricted circulation）プレフィックス 20–29 を使い、実在商品と衝突しない。
+#       実在メーカー仕様の取り込みは docs/SOURCES.md でライセンス判断が済んだソースのみ（現状なし）。
+#
+# 構造: families[].（ファミリー共通の既定値）→ products[].（バリアント／地域版ごとの差分で上書き）
+#   attributes は属性単位でマージ、region_spec はキー単位でマージ、
+#   compatibility / ingredients / bundle は商品側に書けば丸ごと置き換え。
+#   数値は {value, unit}、範囲は {min, max, unit}、文字列は {value}。
+seed_id: specbench-v0
+source_id: S0-synthetic-seed
+source_url_base: synthetic://specsure/seed/v0
+
+families:
+  # ───────────────────────────── 家電（互換性中心） ─────────────────────────────
+  - family_id: kestrelon-kc-pd45
+    line_id: kestrelon-kc-pd
+    generation: 1
+    brand: Kestrelon
+    category: electronics.charger
+    name: {en: Kestrelon 45W USB-C Charger, ja: ケストレロン 45W USB-C 充電器}
+    attributes:
+      output_power: {value: 45, unit: W}
+      weight: {value: 85, unit: g}
+      width: {value: 40, unit: mm}
+      height: {value: 40, unit: mm}
+      depth: {value: 30, unit: mm}
+      port_count: {value: 1, unit: ports}
+    compatibility:
+      compatible: [USB PD 3.0, Corvel Nova 5, Ostrel BookAir 13]
+      incompatible: [Corvel TurboCharge]
+      exhaustive: false
+    bundle: {items: [本体, 取扱説明書], exhaustive: true}
+    region_spec:
+      voltage: {min: 100, max: 240, unit: V}
+      frequency: {min: 50, max: 60, unit: Hz}
+      plug_type: {value: A}
+      market: {value: JP}
+    products:
+      - {product_id: jp-kc-pd45-wh, model_number: KC-PD45-WH, gtin: "2010101000005", region: JP,
+         retailer: retailer_a, captured_at: "2026-07-18T10:00:00+09:00", variant: {color: white}}
+
+  - family_id: kestrelon-kc-pd65
+    line_id: kestrelon-kc-pd
+    generation: 2
+    brand: Kestrelon
+    category: electronics.charger
+    name: {en: Kestrelon 65W USB-C Charger, ja: ケストレロン 65W USB-C 充電器}
+    attributes:
+      output_power: {value: 65, unit: W}
+      weight: {value: 112, unit: g}
+      width: {value: 45, unit: mm}
+      height: {value: 45, unit: mm}
+      depth: {value: 31, unit: mm}
+      port_count: {value: 2, unit: ports}
+    compatibility:
+      compatible: [USB PD 3.0, PPS, Corvel Nova 5, Corvel Nova 5 Pro, Ostrel BookAir 14 (2025)]
+      incompatible: [Corvel TurboCharge]
+      exhaustive: false
+    bundle: {items: [本体, 取扱説明書], exhaustive: true}
+    region_spec:
+      voltage: {min: 100, max: 240, unit: V}
+      frequency: {min: 50, max: 60, unit: Hz}
+      plug_type: {value: A}
+      market: {value: JP}
+    products:
+      - {product_id: jp-kc-pd65-bk, model_number: KC-PD65-BK, gtin: "2010201000004", region: JP,
+         retailer: retailer_a, captured_at: "2026-08-20T10:00:00+09:00", variant: {color: black}}
+      - {product_id: jp-kc-pd65-wh, model_number: KC-PD65-WH, gtin: "2010202000003", region: JP,
+         retailer: retailer_b, captured_at: "2026-09-22T10:00:00+09:00", variant: {color: white}}
+      - product_id: us-kc-pd65-bk
+        model_number: KC-PD65-BK-US
+        gtin: "210203000008"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-05T09:00:00-07:00"
+        variant: {color: black}
+        bundle: {items: [charger, quick start guide], exhaustive: true}
+        region_spec: {market: {value: US}}
+
+  - family_id: kestrelon-kp
+    line_id: kestrelon-kp
+    generation: 1
+    brand: Kestrelon
+    category: electronics.power_bank
+    name: {en: Kestrelon Power Bank, ja: ケストレロン モバイルバッテリー}
+    attributes:
+      output_power: {value: 30, unit: W}
+    compatibility:
+      compatible: [USB PD 3.0, Corvel Nova 5]
+      incompatible: [Corvel TurboCharge]
+      exhaustive: false
+    bundle: {items: [USB-C ケーブル, 収納ポーチ, 取扱説明書], exhaustive: true}
+    region_spec: {market: {value: JP}}
+    products:
+      - product_id: jp-kp-10k-bk
+        model_number: KP-10K-BK
+        gtin: "2010301000003"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-08-02T10:00:00+09:00"
+        variant: {capacity: 10000 mAh, color: black}
+        attributes:
+          capacity_charge: {value: 10000, unit: mAh}
+          weight: {value: 180, unit: g}
+      - product_id: jp-kp-20k-bk
+        model_number: KP-20K-BK
+        gtin: "2010302000002"
+        region: JP
+        retailer: retailer_a
+        captured_at: "2026-09-30T10:00:00+09:00"
+        variant: {capacity: 20000 mAh, color: black}
+        attributes:
+          capacity_charge: {value: 20000, unit: mAh}
+          weight: {value: 340, unit: g}
+          output_power: {value: 45, unit: W}
+      - product_id: us-kp-20k-bk
+        model_number: KP-20K-BK-US
+        gtin: "210303000007"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-12T09:00:00-07:00"
+        variant: {capacity: 20000 mAh, color: black}
+        attributes:
+          capacity_charge: {value: 20000, unit: mAh}
+          weight: {value: 340, unit: g}
+          output_power: {value: 45, unit: W}
+        bundle: {items: [USB-C cable, travel pouch, user manual], exhaustive: true}
+        region_spec: {market: {value: US}}
+
+  - family_id: mizunagi-mz-ic80
+    line_id: mizunagi-mz-ic
+    generation: 2
+    brand: Mizunagi
+    category: electronics.ink_cartridge
+    name: {en: Mizunagi IC80 Ink Cartridge, ja: ミズナギ IC80 インクカートリッジ}
+    attributes:
+      page_yield: {value: 400, unit: pages}
+      ink_volume: {value: 6.2, unit: mL}
+    compatibility:
+      compatible: [Mizunagi PX-810, Mizunagi PX-820, Mizunagi PX-830F]
+      incompatible: [Mizunagi PX-710]
+      exhaustive: true
+    region_spec: {market: {value: JP}}
+    products:
+      - product_id: jp-mz-ic80-bk
+        model_number: MZ-IC80-BK
+        gtin: "2010401000002"
+        region: JP
+        retailer: retailer_a
+        captured_at: "2026-07-22T10:00:00+09:00"
+        variant: {color: black}
+        attributes:
+          page_yield: {value: 500, unit: pages}
+          ink_volume: {value: 8.0, unit: mL}
+      - {product_id: jp-mz-ic80-c, model_number: MZ-IC80-C, gtin: "2010402000001", region: JP,
+         retailer: retailer_b, captured_at: "2026-08-15T10:00:00+09:00", variant: {color: cyan}}
+      - {product_id: jp-mz-ic80-m, model_number: MZ-IC80-M, gtin: "2010403000000", region: JP,
+         retailer: maker_direct, captured_at: "2026-09-18T10:00:00+09:00", variant: {color: magenta}}
+      - {product_id: jp-mz-ic80-y, model_number: MZ-IC80-Y, gtin: "2010404000009", region: JP,
+         retailer: retailer_a, captured_at: "2026-10-08T10:00:00+09:00", variant: {color: yellow}}
+
+  - family_id: mizunagi-mz-ic70
+    line_id: mizunagi-mz-ic
+    generation: 1
+    brand: Mizunagi
+    category: electronics.ink_cartridge
+    name: {en: Mizunagi IC70 Ink Cartridge, ja: ミズナギ IC70 インクカートリッジ}
+    attributes:
+      page_yield: {value: 350, unit: pages}
+      ink_volume: {value: 5.5, unit: mL}
+    compatibility:
+      compatible: [Mizunagi PX-700, Mizunagi PX-710]
+      incompatible: [Mizunagi PX-810]
+      exhaustive: true
+    region_spec: {market: {value: JP}}
+    products:
+      - {product_id: jp-mz-ic70-bk, model_number: MZ-IC70-BK, gtin: "2010501000001", region: JP,
+         retailer: retailer_b, captured_at: "2026-07-25T10:00:00+09:00", variant: {color: black}}
+
+  - family_id: torrafen-tr-lb
+    line_id: torrafen-tr-lb
+    generation: 1
+    brand: Torrafen
+    category: electronics.laptop_battery
+    name: {en: Torrafen Replacement Laptop Battery, ja: トラフェン 交換用ノートPCバッテリー}
+    attributes:
+      nominal_voltage: {value: 11.4, unit: V}
+    bundle: {items: [battery, screwdriver, installation guide], exhaustive: true}
+    region_spec: {market: {value: US}}
+    products:
+      - product_id: us-tr-lb-56wh
+        model_number: TR-LB-56WH
+        gtin: "210601000006"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-08-08T09:00:00-07:00"
+        variant: {capacity: 56 Wh}
+        attributes: &tr56
+          capacity_energy: {value: 56, unit: Wh}
+          capacity_charge: {value: 4910, unit: mAh}
+          weight: {value: 260, unit: g}
+        compatibility: &tr56compat
+          compatible: [Ostrel BookAir 14 (2024), Ostrel BookAir 14 (2025)]
+          incompatible: [Ostrel BookPro 15 (2025)]
+          exhaustive: true
+      - product_id: us-tr-lb-72wh
+        model_number: TR-LB-72WH
+        gtin: "210602000005"
+        region: US
+        retailer: maker_direct
+        captured_at: "2026-09-25T09:00:00-07:00"
+        variant: {capacity: 72 Wh}
+        attributes:
+          capacity_energy: {value: 72, unit: Wh}
+          capacity_charge: {value: 6315, unit: mAh}
+          weight: {value: 330, unit: g}
+        compatibility:
+          compatible: [Ostrel BookPro 15 (2025)]
+          incompatible: [Ostrel BookAir 14 (2024)]
+          exhaustive: true
+      - product_id: jp-tr-lb-56wh
+        model_number: TR-LB-56WH-JP
+        gtin: "2010603000008"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-10-02T10:00:00+09:00"
+        variant: {capacity: 56 Wh}
+        attributes: *tr56
+        compatibility: *tr56compat
+        bundle: {items: [バッテリー本体, ドライバー, 取付説明書], exhaustive: true}
+        region_spec: {market: {value: JP}}
+
+  - family_id: sorameku-se-10
+    line_id: sorameku-se
+    generation: 1
+    brand: Sorameku
+    category: electronics.earbuds
+    name: {en: Sorameku SE-10 Wireless Earbuds, ja: ソラメク SE-10 ワイヤレスイヤホン}
+    attributes:
+      battery_life: {value: 6, unit: h}
+      weight: {value: 5.2, unit: g}
+    compatibility:
+      compatible: [Bluetooth 5.2, AAC, SBC]
+      incompatible: [LDAC]
+      exhaustive: false
+    bundle: {items: [充電ケース, USB-C ケーブル, イヤーピース (S/M/L)], exhaustive: true}
+    region_spec: {market: {value: JP}}
+    products:
+      - {product_id: jp-se-10-bk, model_number: SE-10-BK, gtin: "2010701000009", region: JP,
+         retailer: retailer_a, captured_at: "2026-07-30T10:00:00+09:00", variant: {color: black}}
+
+  - family_id: sorameku-se-20
+    line_id: sorameku-se
+    generation: 2
+    brand: Sorameku
+    category: electronics.earbuds
+    name: {en: Sorameku SE-20 Wireless Earbuds, ja: ソラメク SE-20 ワイヤレスイヤホン}
+    attributes:
+      battery_life: {value: 8, unit: h}
+      weight: {value: 4.8, unit: g}
+    compatibility:
+      compatible: [Bluetooth 5.3, AAC, SBC, LDAC]
+      incompatible: [Corvel HyperLink]
+      exhaustive: false
+    bundle: {items: [充電ケース, USB-C ケーブル, イヤーピース (S/M/L)], exhaustive: true}
+    region_spec: {market: {value: JP}}
+    products:
+      - {product_id: jp-se-20-bk, model_number: SE-20-BK, gtin: "2010801000008", region: JP,
+         retailer: retailer_b, captured_at: "2026-08-25T10:00:00+09:00", variant: {color: black}}
+      - {product_id: jp-se-20-wh, model_number: SE-20-WH, gtin: "2010802000007", region: JP,
+         retailer: retailer_a, captured_at: "2026-09-12T10:00:00+09:00", variant: {color: white}}
+      - product_id: us-se-20-bk
+        model_number: SE-20-BK-US
+        gtin: "210803000002"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-15T09:00:00-07:00"
+        variant: {color: black}
+        bundle: {items: [charging case, USB-C cable, ear tips (S/M/L)], exhaustive: true}
+        region_spec: {market: {value: US}}
+
+  - family_id: halvane-hv-n5
+    line_id: halvane-hv-n5
+    generation: 1
+    brand: Halvane
+    category: electronics.phone_case
+    name: {en: Halvane Slim Case for Corvel Nova 5 series, ja: ハルヴェイン スリムケース Corvel Nova 5 シリーズ用}
+    region_spec: {market: {value: US}}
+    products:
+      - product_id: us-hv-n5-cl
+        model_number: HV-N5-CL
+        gtin: "210901000003"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-08-11T09:00:00-07:00"
+        variant: {color: clear, fits: Corvel Nova 5}
+        attributes: &n5attr
+          weight: {value: 28, unit: g}
+          thickness: {value: 1.2, unit: mm}
+        compatibility: &n5compat
+          compatible: [Corvel Nova 5]
+          incompatible: [Corvel Nova 5 Pro, Corvel Nova 4]
+          exhaustive: true
+      - product_id: us-hv-n5-bk
+        model_number: HV-N5-BK
+        gtin: "210902000002"
+        region: US
+        retailer: maker_direct
+        captured_at: "2026-09-03T09:00:00-07:00"
+        variant: {color: black, fits: Corvel Nova 5}
+        attributes: *n5attr
+        compatibility: *n5compat
+      - product_id: us-hv-n5p-cl
+        model_number: HV-N5P-CL
+        gtin: "210903000001"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-09-28T09:00:00-07:00"
+        variant: {color: clear, fits: Corvel Nova 5 Pro}
+        attributes: &n5pattr
+          weight: {value: 32, unit: g}
+          thickness: {value: 1.2, unit: mm}
+        compatibility: &n5pcompat
+          compatible: [Corvel Nova 5 Pro]
+          incompatible: [Corvel Nova 5]
+          exhaustive: true
+      - product_id: jp-hv-n5p-bk
+        model_number: HV-N5P-BK
+        gtin: "2010904000004"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-10-18T10:00:00+09:00"
+        variant: {color: black, fits: Corvel Nova 5 Pro}
+        attributes: *n5pattr
+        compatibility: *n5pcompat
+        region_spec: {market: {value: JP}}
+
+  - family_id: pinewick-pw-h21
+    line_id: pinewick-pw-h
+    generation: 2
+    brand: Pinewick
+    category: electronics.cable
+    name: {en: Pinewick Ultra High Speed HDMI Cable, ja: パインウィック ウルトラハイスピード HDMI ケーブル}
+    attributes:
+      max_data_rate: {value: 48, unit: Gbps}
+    compatibility:
+      compatible: [HDMI 2.1, 8K60, 4K120, eARC]
+      incompatible: []
+      exhaustive: false
+    region_spec: {market: {value: JP}}
+    products:
+      - {product_id: jp-pw-h21-1m, model_number: PW-H21-1M, gtin: "2011001000003", region: JP,
+         retailer: retailer_a, captured_at: "2026-08-05T10:00:00+09:00", variant: {length: 1 m},
+         attributes: {length: {value: 1, unit: m}}}
+      - {product_id: jp-pw-h21-2m, model_number: PW-H21-2M, gtin: "2011002000002", region: JP,
+         retailer: retailer_b, captured_at: "2026-09-08T10:00:00+09:00", variant: {length: 2 m},
+         attributes: {length: {value: 2, unit: m}}}
+      - {product_id: us-pw-h21-2m, model_number: PW-H21-2M-US, gtin: "211003000007", region: US,
+         retailer: retailer_c, captured_at: "2026-10-10T09:00:00-07:00", variant: {length: 2 m},
+         attributes: {length: {value: 2, unit: m}}, region_spec: {market: {value: US}}}
+
+  - family_id: pinewick-pw-h20
+    line_id: pinewick-pw-h
+    generation: 1
+    brand: Pinewick
+    category: electronics.cable
+    name: {en: Pinewick High Speed HDMI Cable, ja: パインウィック ハイスピード HDMI ケーブル}
+    attributes:
+      max_data_rate: {value: 18, unit: Gbps}
+      length: {value: 2, unit: m}
+    compatibility:
+      compatible: [HDMI 2.0, 4K60]
+      incompatible: [8K60, 4K120]
+      exhaustive: false
+    region_spec: {market: {value: JP}}
+    products:
+      - {product_id: jp-pw-h20-2m, model_number: PW-H20-2M, gtin: "2011101000002", region: JP,
+         retailer: retailer_a, captured_at: "2026-07-20T10:00:00+09:00", variant: {length: 2 m}}
+
+  - family_id: yukibana-yk-hd12
+    line_id: yukibana-yk-hd
+    generation: 1
+    brand: Yukibana
+    category: appliance.hair_dryer
+    name: {en: Yukibana Ion Hair Dryer, ja: ユキバナ イオンヘアドライヤー}
+    attributes:
+      power_consumption: {value: 1200, unit: W}
+      weight: {value: 480, unit: g}
+    bundle: {items: [速乾ノズル, セットノズル], exhaustive: true}
+    region_spec:
+      voltage: {value: 100, unit: V}
+      frequency: {min: 50, max: 60, unit: Hz}
+      plug_type: {value: A}
+      market: {value: JP}
+    products:
+      - {product_id: jp-yk-hd12-w, model_number: YK-HD12-W, gtin: "2011201000001", region: JP,
+         retailer: retailer_a, captured_at: "2026-08-18T10:00:00+09:00", variant: {color: white}}
+      - {product_id: jp-yk-hd12-k, model_number: YK-HD12-K, gtin: "2011202000000", region: JP,
+         retailer: retailer_b, captured_at: "2026-09-15T10:00:00+09:00", variant: {color: black}}
+      - product_id: us-yk-hd12-w
+        model_number: YK-HD12-US-W
+        gtin: "211203000005"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-01T09:00:00-07:00"
+        variant: {color: white}
+        attributes:
+          power_consumption: {value: 1875, unit: W}
+          weight: {value: 490, unit: g}
+        bundle: {items: [concentrator nozzle, diffuser], exhaustive: true}
+        region_spec:
+          voltage: {value: 120, unit: V}
+          frequency: {value: 60, unit: Hz}
+          market: {value: US}
+
+  # ───────────────────────────── 食品（成分・アレルゲン中心） ─────────────────────────────
+  - family_id: mizunagi-senbei
+    line_id: mizunagi-senbei
+    generation: 1
+    brand: Mizunagi
+    category: food.snack
+    name: {en: Mizunagi Rice Crackers, ja: ミズナギ 米菓}
+    region_spec: {market: {value: JP}}
+    products:
+      - product_id: jp-senbei-shoyu
+        gtin: "2020101000004"
+        region: JP
+        retailer: retailer_a
+        captured_at: "2026-07-16T10:00:00+09:00"
+        variant: {flavor: しょうゆ味}
+        attributes:
+          net_weight: {value: 100, unit: g}
+          energy_per_100g: {value: 380, unit: kcal}
+          pack_count: {value: 10, unit: pcs}      # 個包装 10 袋
+        ingredients:
+          items: [うるち米, {name: しょうゆ, contains: [小麦, 大豆]}, 砂糖, 米発酵調味料, "調味料(アミノ酸等)"]
+          allergens: [小麦, 大豆]
+          may_contain: [えび]
+          allergen_statement: true
+          exhaustive: true
+      - product_id: jp-senbei-ebi
+        gtin: "2020102000003"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-08-28T10:00:00+09:00"
+        variant: {flavor: えび味}
+        attributes:
+          net_weight: {value: 80, unit: g}
+          energy_per_100g: {value: 410, unit: kcal}
+        ingredients:
+          items: [うるち米, 植物油脂, えび粉末, 食塩, でん粉, "調味料(アミノ酸等)"]
+          allergens: [えび]
+          may_contain: [小麦]
+          allergen_statement: true
+          exhaustive: true
+      - product_id: us-senbei-soy
+        gtin: "220103000008"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-09-20T09:00:00-07:00"
+        variant: {flavor: soy sauce}
+        attributes:
+          net_weight: {value: 3.5, unit: oz}
+          energy_per_100g: {value: 386, unit: kcal}
+        ingredients:
+          items: [rice, {name: soy sauce, contains: [water, soybeans, wheat, salt]}, sugar, corn syrup, salt]
+          allergens: [wheat, soy]
+          may_contain: []
+          allergen_statement: true
+          exhaustive: true
+        region_spec: {market: {value: US}}
+
+  - family_id: brightquill-granola
+    line_id: brightquill-granola
+    generation: 1
+    brand: Brightquill
+    category: food.cereal
+    name: {en: Brightquill Honey Granola, ja: ブライトクイル ハニーグラノーラ}
+    region_spec: {market: {value: US}}
+    ingredients:
+      items: [whole grain oats, honey, almonds, canola oil, salt]
+      allergens: [tree nuts]
+      may_contain: [peanuts]
+      allergen_statement: true
+      exhaustive: true
+    products:
+      - {product_id: us-granola-orig-12oz, gtin: "220201000009", region: US, retailer: retailer_c,
+         captured_at: "2026-07-28T09:00:00-07:00", variant: {flavor: original, size: 12 oz},
+         attributes: {net_weight: {value: 12, unit: oz}}}
+      - {product_id: us-granola-orig-24oz, gtin: "220202000008", region: US, retailer: maker_direct,
+         captured_at: "2026-09-05T09:00:00-07:00", variant: {flavor: original, size: 24 oz},
+         attributes: {net_weight: {value: 24, unit: oz}, pack_count: {value: 2, unit: pcs}}}   # 12 oz × 2 袋
+      - product_id: us-granola-nutfree-12oz
+        gtin: "220203000007"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-14T09:00:00-07:00"
+        variant: {flavor: nut free, size: 12 oz}
+        attributes: {net_weight: {value: 12, unit: oz}}
+        ingredients:
+          items: [whole grain oats, honey, sunflower seeds, canola oil, salt]
+          allergens: []
+          may_contain: []
+          allergen_statement: true
+          exhaustive: true
+      - product_id: jp-granola-orig
+        gtin: "2020204000000"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-08-12T10:00:00+09:00"
+        variant: {flavor: original, size: 300 g}
+        attributes: {net_weight: {value: 300, unit: g}}
+        ingredients:          # 並行輸入品。取得できたのは主要原材料のみ（網羅的でない）
+          items: [オーツ麦, はちみつ, アーモンド]
+          allergens: [アーモンド]
+          may_contain: []
+          allergen_statement: false
+          exhaustive: false
+        region_spec: {market: {value: JP}}
+
+  - family_id: lumora-choco
+    line_id: lumora-choco
+    generation: 1
+    brand: Lumora
+    category: food.confectionery
+    name: {en: Lumora Chocolate Bar, ja: ルモラ チョコレート}
+    region_spec: {market: {value: JP}}
+    products:
+      - product_id: jp-choco-milk
+        gtin: "2020301000002"
+        region: JP
+        retailer: retailer_a
+        captured_at: "2026-08-07T10:00:00+09:00"
+        variant: {flavor: ミルク}
+        attributes: {net_weight: {value: 50, unit: g}}
+        ingredients:
+          items: [砂糖, 全粉乳, カカオマス, ココアバター, "乳化剤(大豆由来)", 香料]
+          allergens: [乳成分, 大豆]
+          may_contain: [落花生]
+          allergen_statement: true
+          exhaustive: true
+      - product_id: jp-choco-dark
+        gtin: "2020302000001"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-09-24T10:00:00+09:00"
+        variant: {flavor: ダーク}
+        attributes: {net_weight: {value: 50, unit: g}}
+        ingredients:
+          items: [カカオマス, 砂糖, ココアバター, "乳化剤(大豆由来)"]
+          allergens: [大豆]
+          may_contain: [乳成分]
+          allergen_statement: true
+          exhaustive: true
+      - product_id: us-choco-milk
+        gtin: "220303000006"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-03T09:00:00-07:00"
+        variant: {flavor: milk}
+        attributes: {net_weight: {value: 1.76, unit: oz}}
+        ingredients:
+          items: [sugar, whole milk powder, cocoa butter, chocolate liquor, soy lecithin, vanilla extract]
+          allergens: [milk, soy]
+          may_contain: [peanuts, tree nuts]
+          allergen_statement: true
+          exhaustive: true
+        region_spec: {market: {value: US}}
+
+  - family_id: tidewell-citrus
+    line_id: tidewell-citrus
+    generation: 1
+    brand: Tidewell
+    category: food.beverage
+    name: {en: Tidewell Citrus Electrolyte Drink Mix, ja: タイドウェル シトラス 電解質ドリンクパウダー}
+    products:
+      - product_id: us-tidewell-citrus
+        gtin: "220401000007"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-08-22T09:00:00-07:00"
+        variant: {flavor: citrus}
+        attributes:
+          net_weight: {value: 300, unit: g}
+          caffeine: {value: 80, unit: mg}
+          pack_count: {value: 30, unit: pcs}      # 10 g スティック × 30
+        ingredients:
+          items: [sugar, citric acid, sodium citrate, natural flavors, caffeine, potassium chloride, sucralose]
+          allergens: []
+          may_contain: []
+          allergen_statement: true
+          exhaustive: true
+        region_spec: {market: {value: US}}
+      - product_id: jp-tidewell-citrus
+        gtin: "2020402000000"
+        region: JP
+        retailer: retailer_a
+        captured_at: "2026-10-06T10:00:00+09:00"
+        variant: {flavor: シトラス}
+        attributes:
+          net_weight: {value: 300, unit: g}
+          caffeine: {value: 40, unit: mg}
+          pack_count: {value: 30, unit: pcs}
+        ingredients:
+          items: [砂糖, クエン酸, クエン酸Na, 香料, カフェイン, 塩化K]
+          allergens: []
+          may_contain: []
+          allergen_statement: true
+          exhaustive: true
+        region_spec: {market: {value: JP}}
+
+  # ───────────────────────────── 化粧品（成分中心） ─────────────────────────────
+  - family_id: yukibana-lotion
+    line_id: yukibana-lotion
+    generation: 1
+    brand: Yukibana
+    category: cosmetics.skincare
+    name: {en: Yukibana Hydrating Lotion, ja: ユキバナ 保湿化粧水}
+    ingredients:
+      items: [水, グリセリン, BG, ヒアルロン酸Na, ナイアシンアミド, フェノキシエタノール]
+      allergens: []
+      may_contain: []
+      allergen_statement: false
+      exhaustive: true
+    region_spec: {market: {value: JP}}
+    products:
+      - {product_id: jp-lotion-150, gtin: "2030101000003", region: JP, retailer: retailer_a,
+         captured_at: "2026-07-24T10:00:00+09:00", variant: {size: 150 mL, form: ボトル},
+         attributes: {volume: {value: 150, unit: mL}}}
+      - {product_id: jp-lotion-300-refill, gtin: "2030102000002", region: JP, retailer: retailer_b,
+         captured_at: "2026-09-10T10:00:00+09:00", variant: {size: 300 mL, form: 詰替用},
+         attributes: {volume: {value: 300, unit: mL}}}
+      - product_id: us-toner-150
+        gtin: "230103000007"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-09T09:00:00-07:00"
+        variant: {size: 150 mL, form: bottle}
+        attributes: {volume: {value: 150, unit: mL}}
+        ingredients:
+          items: [water, glycerin, butylene glycol, sodium hyaluronate, niacinamide, methylparaben, fragrance (parfum)]
+          allergens: []
+          may_contain: []
+          allergen_statement: false
+          exhaustive: true
+        region_spec: {market: {value: US}}
+
+  - family_id: sorameku-sunscreen
+    line_id: sorameku-sunscreen
+    generation: 1
+    brand: Sorameku
+    category: cosmetics.sunscreen
+    name: {en: Sorameku Daily UV Milk, ja: ソラメク デイリーUVミルク}
+    attributes:
+      spf: {value: 50, unit: ""}
+    ingredients:
+      items: [水, 酸化亜鉛, 酸化チタン, エタノール, BG, ジメチコン]
+      allergens: []
+      may_contain: []
+      allergen_statement: false
+      exhaustive: true
+    region_spec:
+      pa_rating: {value: PA++++}
+      market: {value: JP}
+    products:
+      - {product_id: jp-sunscreen-40g, gtin: "2030201000002", region: JP, retailer: retailer_a,
+         captured_at: "2026-08-14T10:00:00+09:00", variant: {size: 40 g},
+         attributes: {net_weight: {value: 40, unit: g}}}
+      - product_id: jp-sunscreen-80g
+        gtin: "2030202000001"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-09-16T10:00:00+09:00"
+        variant: {size: 80 g}
+        attributes: {net_weight: {value: 80, unit: g}}
+        ingredients:          # 小売フィードで有効成分のみ取得（網羅的でない）
+          items: [酸化亜鉛, 酸化チタン]
+          allergens: []
+          may_contain: []
+          allergen_statement: false
+          exhaustive: false
+      - product_id: us-sunscreen-1-4oz
+        gtin: "230203000006"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-20T09:00:00-07:00"
+        variant: {size: 1.4 fl oz}
+        attributes: {volume: {value: 1.4, unit: fl oz}}
+        ingredients:
+          items: [avobenzone, homosalate, octocrylene, water, glycerin, fragrance (parfum)]
+          allergens: []
+          may_contain: []
+          allergen_statement: false
+          exhaustive: true
+        region_spec:
+          pa_rating: null
+          market: {value: US}
+
+  - family_id: halvane-shampoo
+    line_id: halvane-shampoo
+    generation: 1
+    brand: Halvane
+    category: cosmetics.haircare
+    name: {en: Halvane Botanical Shampoo, ja: ハルヴェイン ボタニカルシャンプー}
+    attributes:
+      volume: {value: 400, unit: mL}
+    region_spec: {market: {value: JP}}
+    products:
+      - product_id: jp-shampoo-floral
+        gtin: "2030301000001"
+        region: JP
+        retailer: retailer_a
+        captured_at: "2026-08-01T10:00:00+09:00"
+        variant: {scent: フローラル}
+        ingredients:
+          items: [水, ラウレス硫酸Na, コカミドプロピルベタイン, グリセリン, 香料, 安息香酸Na]
+          allergens: []
+          may_contain: []
+          allergen_statement: false
+          exhaustive: true
+      - product_id: jp-shampoo-unscented
+        gtin: "2030302000000"
+        region: JP
+        retailer: retailer_b
+        captured_at: "2026-09-02T10:00:00+09:00"
+        variant: {scent: 無香料}
+        ingredients:
+          items: [水, ラウロイルメチルアラニンNa, コカミドプロピルベタイン, グリセリン, 安息香酸Na]
+          allergens: []
+          may_contain: []
+          allergen_statement: false
+          exhaustive: true
+      - product_id: us-shampoo-floral
+        gtin: "230303000005"
+        region: US
+        retailer: retailer_c
+        captured_at: "2026-10-11T09:00:00-07:00"
+        variant: {scent: floral}
+        attributes: {volume: {value: 13.5, unit: fl oz}}
+        ingredients:
+          items: [water, sodium laureth sulfate, cocamidopropyl betaine, glycerin, fragrance (parfum), sodium benzoate]
+          allergens: []
+          may_contain: []
+          allergen_statement: false
+          exhaustive: true
+        region_spec: {market: {value: US}}

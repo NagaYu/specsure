@@ -1,0 +1,153 @@
+# 単位換算テーブル。各次元の factor は「その単位 1 が SI 基準単位でいくつか」。
+# 単位名の照合は NFKC 正規化 → 前後空白除去 → 小文字化してから行う（aliases も同様に小文字で書く）。
+# 小文字化で衝突する単位（MW と mW、Mb と MB 等）は意図的に収録しない。
+version: 1
+
+dimensions:
+  length:
+    si: m
+    units: {m: 1.0, mm: 0.001, cm: 0.01, km: 1000.0, in: 0.0254, ft: 0.3048}
+  mass:
+    si: kg
+    units: {kg: 1.0, g: 0.001, mg: 1.0e-6, oz: 0.028349523125, lb: 0.45359237}
+  volume:
+    si: m3
+    units: {m3: 1.0, l: 0.001, ml: 1.0e-6, fl_oz: 2.95735295625e-5}
+  power:
+    si: W
+    units: {w: 1.0, kw: 1000.0}
+  voltage:
+    si: V
+    units: {v: 1.0, kv: 1000.0}
+  current:
+    si: A
+    units: {a: 1.0, ma: 0.001}
+  electric_charge:
+    si: C
+    units: {c: 1.0, mah: 3.6, ah: 3600.0}
+  energy:
+    si: J
+    units: {j: 1.0, kj: 1000.0, wh: 3600.0, kwh: 3.6e6, kcal: 4184.0}
+  data_size:
+    si: byte
+    units: {byte: 1.0, kb: 1.0e3, mb: 1.0e6, gb: 1.0e9, tb: 1.0e12, gib: 1073741824.0}
+  data_rate:
+    si: bit/s
+    units: {bps: 1.0, kbps: 1.0e3, mbps: 1.0e6, gbps: 1.0e9}
+  frequency:
+    si: Hz
+    units: {hz: 1.0, khz: 1.0e3, mhz: 1.0e6, ghz: 1.0e9}
+  time:
+    si: s
+    units: {s: 1.0, min: 60.0, h: 3600.0}
+  count:
+    si: count
+    units: {count: 1.0, pages: 1.0, pcs: 1.0, ports: 1.0}
+  percent:
+    si: "%"
+    units: {"%": 1.0}
+  dimensionless:
+    si: "1"
+    units: {"": 1.0}
+
+# 表記揺れ → 正規単位名（小文字、NFKC 後の形で書く）
+aliases:
+  inch: in
+  inches: in
+  '"': in
+  インチ: in
+  型: in            # 表示サイズの「型」は inch 相当
+  ミリ: mm
+  ミリメートル: mm
+  センチ: cm
+  センチメートル: cm
+  メートル: m
+  feet: ft
+  グラム: g
+  キログラム: kg
+  ミリグラム: mg
+  lbs: lb
+  oz.: oz
+  ml.: ml
+  ミリリットル: ml
+  リットル: l
+  fl oz: fl_oz
+  fl. oz: fl_oz
+  fl.oz: fl_oz
+  floz: fl_oz
+  fl. oz.: fl_oz
+  ワット: w
+  watt: w
+  watts: w
+  watt-hours: wh
+  watt hours: wh
+  watt-hour: wh
+  ボルト: v
+  アンペア: a
+  ミリアンペアアワー: mah
+  ワットアワー: wh
+  ワット時: wh
+  キロカロリー: kcal
+  ヘルツ: hz
+  hours: h
+  hour: h
+  hr: h
+  hrs: h
+  時間: h
+  分: min
+  mins: min
+  minutes: min
+  秒: s
+  sec: s
+  page: pages
+  枚: pages
+  ページ: pages
+  個: pcs
+  pc: pcs
+  ポート: ports
+  port: ports
+  # 入数（pack_count）の助数詞・表記。Phase 3 で追加
+  本: pcs
+  袋: pcs
+  包: pcs
+  本入り: pcs
+  個入り: pcs
+  袋入り: pcs
+  本セット: pcs
+  個セット: pcs
+  pieces: pcs
+  piece: pcs
+  sticks: pcs
+  stick: pcs
+  bags: pcs
+  pack: pcs
+  packs: pcs
+  -pack: pcs
+  ct: pcs
+
+# 数値の前置き（「約8時間」「approx. 112 g」「AC100V」）。数値として読む前に落とす。
+# 「最大」「up to」は意味（上限）が変わるので入れない。
+value_prefixes: [約, およそ, 概ね, approx., approx, approximately, about, ca., "~", "〜", ac, dc]
+
+# 単位名が複数次元にまたがるもの。照合先属性の次元に合わせて読み替える
+ambiguous:
+  oz: {mass: oz, volume: fl_oz}
+
+# 取り違えやすい単位の組（mutation E3 の「単位取り違え」と verifier の診断に使う）
+confusable:
+  length: [in, mm, cm]
+  mass: [g, oz]
+  volume: [ml, fl_oz]
+  electric_charge: [mah, ah]
+  energy: [wh, kwh]
+  data_rate: [gbps, mbps]
+  time: [h, min]
+  power: [w, kw]
+
+# US ↔ JP サイズ表記（靴、cm 表記）。メーカー間で差があるため目安表。
+# Phase 1 seed には靴カテゴリを入れていないが、バリアント軸 size の換算に使える形で持つ。
+size_systems:
+  shoe_mens:
+    US: {"7": 25.0, "7.5": 25.5, "8": 26.0, "8.5": 26.5, "9": 27.0, "9.5": 27.5, "10": 28.0, "10.5": 28.5, "11": 29.0}
+  shoe_womens:
+    US: {"5": 22.0, "5.5": 22.5, "6": 23.0, "6.5": 23.5, "7": 24.0, "7.5": 24.5, "8": 25.0, "8.5": 25.5, "9": 26.0}

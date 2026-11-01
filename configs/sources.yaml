@@ -1,0 +1,248 @@
+# 仕様ソース台帳（機械可読）。docs/SOURCES.md はここから `python -m src.cli sources` で生成する。
+# status:
+#   allowed         … ライセンス／規約の判断済みで取り込み可
+#   blocked         … 規約が不明確・再配布不可の可能性が高い等の理由で取り込まない
+#   reference_only  … 参照は可だが「証拠ソース」としては使わない（第一者情報でない等）
+#   prohibited      … 設計上、証拠ソースとして使ってはならない（レビュー・Q&A）
+# 新しいソースは、ここに記録して status を判断してから取り込む。判断が付かないものは blocked。
+version: 1
+
+sources:
+  - source_id: S0-synthetic-seed
+    name: SpecSure 合成 seed（架空商品・手作業で属性化）
+    kind: synthetic_manual
+    evidence_role: first_party_spec    # 合成世界の「メーカー公式仕様」として扱う
+    acquisition: 手作業で作成（data/seed/specbench_v0.yaml）。ネットワーク取得なし
+    license: プロジェクト作成物（公開時は CC0-1.0 を想定、要最終判断）
+    terms_note: 架空のブランド・型番・機種名のみ。GTIN は GS1 店内用プレフィックス 20–29 で実在商品と非衝突
+    redistribution: "yes"
+    status: allowed
+    decided_by: claude (Phase 1 実装時、要 Yuta 確認)
+    decided_at: "2026-10-31"
+
+  - source_id: S1-test-fixtures
+    name: テスト用極小 fixture
+    kind: synthetic_manual
+    evidence_role: first_party_spec
+    acquisition: 手作業で作成（fixtures/）
+    license: プロジェクト作成物
+    terms_note: テスト専用。ベンチには含めない
+    redistribution: "yes"
+    status: allowed
+    decided_by: claude (Phase 1 実装時、要 Yuta 確認)
+    decided_at: "2026-10-31"
+
+  - source_id: C1-manufacturer-spec-pages
+    name: メーカー公式の仕様ページ・仕様表・取扱説明書 PDF（個別サイト）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 未実施（手作業での属性化を想定。大規模スクレイピングはしない）
+    license: サイトごとに異なる（未確認）
+    terms_note: 多くのサイトで転載・二次利用の条件が個別に定められており、サイト単位の規約確認が必要。事実データ（数値・互換機種）の属性化と本文の非保存を前提に、メーカーごとに判断する（Phase 2 で判断したメーカーは C1-<maker> として個別に記載）
+    redistribution: unknown
+    status: blocked
+    decided_by: claude (Phase 1、メーカー単位のレビュー待ち)
+    decided_at: "2026-10-31"
+
+  # ───── C1 メーカー別（Phase 2 real_pilot、2026-10-31 に各社の利用規約ページを閲覧して判断。暫定・要法務確認）─────
+  - source_id: C1-epson-jp
+    name: エプソン（epson.jp 消耗品情報ページ）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 公式ページを閲覧し手作業で属性化（型番・仕様・対応機種）。本文は保存しない
+    license: サイト利用条件（著作権）
+    terms_note: 著作物の複製等を事前許諾なしに禁止。ただし著作権法等で許可された範囲を除く
+    redistribution: "no"
+    status: allowed_internal
+    decided_by: claude (provisional, 要 Yuta/法務確認)
+    decided_at: "2026-10-31"
+    terms_url: https://www.epson.jp/tou/
+    rationale: 規約の対象は「本コンテンツ（著作物）」で、法令で許可された範囲を除外。型番・対応機種名などの事実情報の属性化には言及なし。データ収集の禁止条項なし
+
+  - source_id: C1-canon-jp
+    name: キヤノン（canon.jp / personal.canon.jp 消耗品ページ）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 公式ページを閲覧し手作業で属性化（型番・JAN・入数・対応機種）。価格は保存しない
+    license: サイトのご利用について（著作権・商標）
+    terms_note: コンテンツ（文書・映像等）は著作権法で保護、許可なき複製・転用は禁止。雑誌等への転載は書面許諾が必要
+    redistribution: "no"
+    status: allowed_internal
+    decided_by: claude (provisional, 要 Yuta/法務確認)
+    decided_at: "2026-10-31"
+    terms_url: https://canon.jp/term-of-use
+    rationale: 対象は著作物としてのコンテンツ。事実情報の属性化・データ収集の禁止条項なし。personal.canon.jp も同社運営として同条件と仮定（要確認）
+
+  - source_id: C1-panasonic-jp
+    name: パナソニック（panasonic.jp 商品仕様ページ）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 公式仕様ページを閲覧し手作業で属性化（電源・消費電力・質量・付属品・POS コード）
+    license: サイトのご利用にあたって（著作権）
+    terms_note: 個々の著作物の複製等は著作権法で認められる場合を除き事前許諾が必要
+    redistribution: "no"
+    status: allowed_internal
+    decided_by: claude (provisional, 要 Yuta/法務確認)
+    decided_at: "2026-10-31"
+    terms_url: https://www.panasonic.com/jp/about/terms-of-use.html
+    rationale: 対象は著作物。事実情報の属性化・データ抽出の禁止条項なし（禁止行為は誹謗・不利益等の一般条項）
+
+  - source_id: C1-calbee-jp
+    name: カルビー（calbee.co.jp 商品情報ページ）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 公式ページを閲覧し手作業で属性化（内容量・原材料名・アレルゲン 28 品目）
+    license: サイトポリシー（知的財産権）
+    terms_note: マーク・画像・文章・プログラムデータ等の無断使用・複製は法令上禁止
+    redistribution: "no"
+    status: allowed_internal
+    decided_by: claude (provisional, 要 Yuta/法務確認)
+    decided_at: "2026-10-31"
+    terms_url: https://www.calbee.co.jp/policy/
+    rationale: 対象は知的財産権のあるもの（法令上の禁止の確認）。事実情報の属性化・データ収集の禁止条項なし。ページに JAN の記載なし
+
+  - source_id: C1-glico-jp
+    name: 江崎グリコ（glico.com 商品ページ）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 公式ページを閲覧し手作業で属性化（JAN・内容量・原材料名・アレルゲン）
+    license: ご利用規約（著作権）
+    terms_note: コンテンツ（文章・写真等の著作物）は私的・非営利または著作権法上認められる場合を除き使用不可
+    redistribution: "no"
+    status: allowed_internal
+    decided_by: claude (provisional, 要 Yuta/法務確認)
+    decided_at: "2026-10-31"
+    terms_url: https://www.glico.com/jp/termsofuse/
+    rationale: 対象は著作物。事実情報の属性化の禁止なし。禁止行為の「不特定多数を対象とする営業目的の行為」は将来の商用化時に再確認が必要
+
+  - source_id: C1-meiji-jp
+    name: 明治（meiji.co.jp）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 取り込まない
+    license: ご利用規約
+    terms_note: 著作物に加え「その他の情報」も対象とし、複製は私的使用に限定、情報の転用を控えるよう求める
+    redistribution: "no"
+    status: blocked
+    decided_by: claude (provisional)
+    decided_at: "2026-10-31"
+    terms_url: https://www.meiji.co.jp/regulation/
+    rationale: 「情報」一般の利用を私的使用に限る文言で、事実情報の属性化も対象に含まれうる → 判断が付かず blocked。カルビーに差し替え
+
+  - source_id: C1-anker-jp
+    name: アンカー・ジャパン（ankerjapan.com）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 取り込まない
+    license: 利用規約
+    terms_note: 書面同意なき体系的・自動化されたデータ収集（データ抽出を含む）と商業目的の利用を禁止
+    redistribution: "no"
+    status: blocked
+    decided_by: claude (provisional)
+    decided_at: "2026-10-31"
+    terms_url: https://www.ankerjapan.com/pages/terms
+    rationale: 手作業でもベンチ構築は「体系的なデータ収集・データ抽出」に当たりうる → blocked。パナソニックに差し替え
+
+  - source_id: C1-brother-jp
+    name: ブラザー（brother.co.jp）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 取り込まない
+    license: サイト利用規約
+    terms_note: 「データベース・データ」を含む情報等の利用を私的利用・法の認める範囲に限定
+    redistribution: "no"
+    status: blocked
+    decided_by: claude (provisional)
+    decided_at: "2026-10-31"
+    terms_url: https://www.brother.co.jp/copyright/index.aspx
+    rationale: データそのものを明示的に対象としている → blocked
+
+  - source_id: C1-elecom-jp
+    name: エレコム（elecom.co.jp）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 取り込まない
+    license: ウェブサイト ご利用条件
+    terms_note: 情報・資料を含むコンテンツの無断使用を禁止、営利目的またはその準備を目的とする行為を禁止
+    redistribution: "no"
+    status: blocked
+    decided_by: claude (provisional)
+    decided_at: "2026-10-31"
+    terms_url: https://www.elecom.co.jp/legal/
+    rationale: 「情報」を対象にし、営利の準備行為も禁止（将来の ClaimWatch 等が該当しうる）→ blocked
+
+  - source_id: C1-nissin-jp
+    name: 日清食品グループ（nissin.com）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 取り込まない
+    license: サイトのご利用について
+    terms_note: 掲載情報等の権利を主張し、私的使用等を超える使用を禁止。サービスの商業目的利用を禁止
+    redistribution: "no"
+    status: blocked
+    decided_by: claude (provisional)
+    decided_at: "2026-10-31"
+    terms_url: https://www.nissin.com/jp/docs/terms/
+    rationale: 「情報等」一般が対象 → blocked。グリコに差し替え
+
+  - source_id: C1-kao-jp
+    name: 花王（kao.com/jp）
+    kind: manufacturer_official
+    evidence_role: first_party_spec
+    acquisition: 取り込まない
+    license: ウェブサイト利用規定
+    terms_note: 本コンテンツの使用は目的を問わず文書による事前許諾が必要（個人・非営利・家庭内のダウンロードのみ可）
+    redistribution: "no"
+    status: blocked
+    decided_by: claude (provisional)
+    decided_at: "2026-10-31"
+    terms_url: https://www.kao.com/jp/terms-of-use/
+    rationale: いかなる方法・目的の使用も許諾制 → blocked（化粧品の全成分データ源として有望だが要個別許諾）
+
+  - source_id: C2-retailer-official-api
+    name: 公式 API・商品フィードを持つ小売（例：大手 EC の商品 API）
+    kind: retailer_official_api
+    evidence_role: first_party_spec
+    acquisition: 未実施（API キーと利用規約の確認が前提）
+    license: 各 API の利用規約による（未確認）
+    terms_note: 商品 API は表示目的・再配布禁止・キャッシュ期限などの条件を課すことが一般的と想定。ベンチとしての再配布可否は規約確認まで不明
+    redistribution: unknown
+    status: blocked
+    decided_by: claude (Phase 1、規約レビュー待ち)
+    decided_at: "2026-10-31"
+
+  - source_id: C3-gs1-registry
+    name: GS1 の GTIN 登録情報（Verified by GS1 / GEPIR 等）
+    kind: identifier_registry
+    evidence_role: identity_only
+    acquisition: 未実施
+    license: GS1 の利用規約による（未確認）
+    terms_note: 照会回数・自動取得・再配布に制限がある想定。同一性解決の補助に使う場合も規約確認が必要
+    redistribution: unknown
+    status: blocked
+    decided_by: claude (Phase 1、規約レビュー待ち)
+    decided_at: "2026-10-31"
+
+  - source_id: C4-open-food-facts
+    name: Open Food Facts / Open Beauty Facts
+    kind: open_database
+    evidence_role: none
+    acquisition: 未実施
+    license: データベースは ODbL、個別コンテンツは DbCL、画像は CC BY-SA（とされる。採用前に再確認）
+    terms_note: 再配布は条件付きで可能と考えられるが、クラウドソースでありメーカー第一者の仕様ではないため、証拠ソースには使わない。成分辞書の拡充など補助用途なら検討余地あり
+    redistribution: conditional (share-alike)
+    status: reference_only
+    decided_by: claude (Phase 1)
+    decided_at: "2026-10-31"
+
+  - source_id: X1-customer-reviews-qa
+    name: カスタマーレビュー・Q&A・掲示板
+    kind: user_generated
+    evidence_role: none
+    acquisition: 取得しない
+    license: "-"
+    terms_note: 設計上の明示ルールとして証拠ソースに使わない（sources.py がこの kind を拒否する）
+    redistribution: "no"
+    status: prohibited
+    decided_by: 設計ルール
+    decided_at: "2026-10-31"
